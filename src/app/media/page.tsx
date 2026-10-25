@@ -1,3 +1,5 @@
+'use client';
+
 import type { Metadata } from "next";
 import { Nav, Footer, CookieBanner } from "@/components/Layout";
 import mediaData from "@/config/media.json";

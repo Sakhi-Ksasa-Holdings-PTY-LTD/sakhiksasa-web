@@ -1,3 +1,5 @@
+'use client';
+
 import type { Metadata } from "next";
 import { Nav, Footer, SkylineHero, CookieBanner } from "@/components/Layout";
 import { COMPANY, STANDPOINT_URL } from "@/config/company";

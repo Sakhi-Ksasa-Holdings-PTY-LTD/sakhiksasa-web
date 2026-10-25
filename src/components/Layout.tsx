@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Shared components for the Sakhi'ksasa Holdings website.
  */
