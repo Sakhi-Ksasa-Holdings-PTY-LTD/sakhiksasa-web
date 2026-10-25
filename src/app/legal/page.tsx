@@ -1,7 +1,6 @@
-'use client';
-
 import type { Metadata } from "next";
-import { Nav, Footer, CookieBanner } from "@/components/Layout";
+import { Nav, Footer } from "@/components/Layout"
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "Legal",

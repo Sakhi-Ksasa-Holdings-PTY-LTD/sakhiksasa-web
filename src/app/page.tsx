@@ -1,6 +1,5 @@
-'use client';
-
-import { Nav, Footer, SkylineHero, CookieBanner } from "@/components/Layout";
+import { Nav, Footer, SkylineHero } from "@/components/Layout"
+import { CookieBanner } from "@/components/CookieBanner";
 import { COMPANY, STANDPOINT_URL } from "@/config/company";
 import systemsData from "@/config/systems.json";
 

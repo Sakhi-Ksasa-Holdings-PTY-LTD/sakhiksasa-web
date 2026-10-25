@@ -1,7 +1,6 @@
-'use client';
-
 import { notFound } from "next/navigation";
-import { Nav, Footer, CookieBanner } from "@/components/Layout";
+import { Nav, Footer } from "@/components/Layout"
+import { CookieBanner } from "@/components/CookieBanner";
 
 // The legal documents are stored as raw markdown strings.
 // These are the attorney-reviewed versions from the Standpoint repo.

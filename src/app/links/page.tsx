@@ -1,7 +1,6 @@
-'use client';
-
 import type { Metadata } from "next";
-import { Nav, Footer, CookieBanner } from "@/components/Layout";
+import { Nav, Footer } from "@/components/Layout"
+import { CookieBanner } from "@/components/CookieBanner";
 import { COMPANY, STANDPOINT_URL, FLEET_URL } from "@/config/company";
 
 export const metadata: Metadata = {
