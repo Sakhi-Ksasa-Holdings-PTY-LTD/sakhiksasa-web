@@ -1,42 +1,35 @@
 'use client';
-
 import { COMPANY } from "@/config/company";
 
 export function ContactForm() {
   return (
-    <form
-      className="mt-8 space-y-4"
-      onSubmit={(e) => {
-        e.preventDefault();
-        const form = e.target as HTMLFormElement;
-        const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-        const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-        const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
-        const subject = encodeURIComponent(`Contact from ${name}`);
-        const body = encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`);
-        window.location.href = `mailto:${COMPANY.email}?subject=${subject}&body=${body}`;
-      }}
-    >
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-ink">Name</label>
-        <input id="name" name="name" type="text" required className="mt-1" style={{ width: '100%', padding: '0.5rem 1rem', border: '1px solid var(--line)', borderRadius: '0.5rem', fontSize: '0.875rem' }} placeholder="Your name" />
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      const f = e.target as HTMLFormElement;
+      const name = (f.elements.namedItem('name') as HTMLInputElement).value;
+      const email = (f.elements.namedItem('email') as HTMLInputElement).value;
+      const message = (f.elements.namedItem('message') as HTMLTextAreaElement).value;
+      window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent('Contact from ' + name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' <' + email + '>')}`;
+    }} style={{ marginTop: '32px' }}>
+      <div className="form-group">
+        <label className="form-label" htmlFor="name">Name</label>
+        <input className="form-input" id="name" name="name" type="text" required placeholder="Your name" />
       </div>
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-ink">Email</label>
-        <input id="email" name="email" type="email" required className="mt-1" style={{ width: '100%', padding: '0.5rem 1rem', border: '1px solid var(--line)', borderRadius: '0.5rem', fontSize: '0.875rem' }} placeholder="you@business.co.za" />
+      <div className="form-group">
+        <label className="form-label" htmlFor="email">Email</label>
+        <input className="form-input" id="email" name="email" type="email" required placeholder="you@company.com" />
       </div>
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-ink">Message</label>
-        <textarea id="message" name="message" required rows={5} className="mt-1" style={{ width: '100%', padding: '0.5rem 1rem', border: '1px solid var(--line)', borderRadius: '0.5rem', fontSize: '0.875rem' }} placeholder="How can we help?"></textarea>
+      <div className="form-group">
+        <label className="form-label" htmlFor="message">Message</label>
+        <textarea className="form-input" id="message" name="message" required rows={5} placeholder="How can we help?" style={{ resize: 'vertical' }}></textarea>
       </div>
-      <div className="flex items-start gap-3">
-        <input id="consent" type="checkbox" required className="mt-1" style={{ width: 'auto' }} />
-        <label htmlFor="consent" className="text-xs text-ink/60">
-          I consent to Sakhi&apos;ksasa Holdings processing my personal information as described in the{' '}
-          <a href="/legal/privacy" className="text-gold hover:underline">Privacy Policy</a>.
+      <div className="form-consent">
+        <input id="consent" type="checkbox" required />
+        <label htmlFor="consent" style={{ fontSize: '0.875rem', color: 'var(--muted)' }}>
+          I consent to Sakhi&rsquo;ksasa Holdings processing my personal information as described in the <a href="/legal/privacy" style={{ color: 'var(--brand-primary)', textDecoration: 'underline' }}>Privacy Policy</a>.
         </label>
       </div>
-      <button type="submit" className="btn-primary" style={{ width: '100%' }}>Send message</button>
+      <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>Send Message</button>
     </form>
   );
 }

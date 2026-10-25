@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Nav, Footer } from "@/components/Layout"
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
 
 export const metadata: Metadata = {
-  title: "Legal",
-  description: "Legal documents for Sakhi'ksasa Holdings (Pty) Ltd.",
+  title: "Legal Documents",
+  description: "Legal documents for Sakhi'ksasa Holdings (Pty) Ltd and Standpoint.",
 };
 
-const legalDocs = [
+const docs = [
   { slug: "terms", title: "Terms of Service", desc: "The terms governing your use of Standpoint." },
   { slug: "privacy", title: "Privacy Policy", desc: "How we handle personal information under POPIA." },
   { slug: "ai-use", title: "AI Use Notice", desc: "How AI is used to generate briefings." },
@@ -17,28 +18,23 @@ const legalDocs = [
   { slug: "key-limitations", title: "Key Limitations", desc: "Plain-language summary of what Standpoint is and is not." },
 ];
 
-export default function LegalIndexPage() {
+export default function LegalPage() {
   return (
     <>
-      <Nav />
-      <main className="flex flex-1 flex-col">
-        <section className="mx-auto w-full max-w-3xl px-6 py-20">
-          <h1 className="font-heading text-4xl font-bold">Legal documents</h1>
-          <p className="mt-3 text-ink/60">
-            Effective date: 24 October 2026. Sakhi&apos;ksasa Holdings (Pty) Ltd · CIPC 2026/405064/07.
+      <Header />
+      <main style={{ flex: 1 }}>
+        <section className="section container" style={{ maxWidth: '48rem' }}>
+          <div className="section-label">Legal</div>
+          <h1>Legal documents</h1>
+          <p style={{ color: 'var(--muted)', marginTop: '8px', marginBottom: '32px' }}>
+            Effective date: 24 October 2026. Sakhi&rsquo;ksasa Holdings (Pty) Ltd &middot; CIPC 2026/405064/07.
           </p>
-          <div className="mt-10 space-y-3">
-            {legalDocs.map((doc) => (
-              <a
-                key={doc.slug}
-                href={`/legal/${doc.slug}`}
-                className="block rounded-xl border border-line bg-white p-5 hover:border-gold/50 hover:shadow-sm"
-              >
-                <h2 className="font-heading text-lg font-semibold text-ink">{doc.title}</h2>
-                <p className="mt-1 text-sm text-ink/50">{doc.desc}</p>
-              </a>
-            ))}
-          </div>
+          {docs.map((d) => (
+            <a key={d.slug} href={`/legal/${d.slug}`} className="card" style={{ display: 'block', marginBottom: '12px' }}>
+              <div className="card-title">{d.title}</div>
+              <p className="card-desc">{d.desc}</p>
+            </a>
+          ))}
         </section>
       </main>
       <Footer />

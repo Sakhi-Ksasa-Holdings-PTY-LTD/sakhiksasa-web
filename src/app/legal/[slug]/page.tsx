@@ -685,7 +685,7 @@ export default function LegalDocPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <Nav />
+      <Header />
       <main className="flex flex-1 flex-col">
         <section className="mx-auto w-full max-w-3xl px-6 py-20">
           <a href="/legal" className="text-sm text-gold hover:underline">← All legal documents</a>

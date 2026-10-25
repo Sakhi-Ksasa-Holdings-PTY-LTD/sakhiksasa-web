@@ -1,150 +1,82 @@
-import { Nav, Footer, SkylineHero } from "@/components/Layout"
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
-import { COMPANY, STANDPOINT_URL } from "@/config/company";
-import systemsData from "@/config/systems.json";
+import { COMPANY } from "@/config/company";
 
 export default function HomePage() {
-  const liveSystems = systemsData.filter((s) => s.status === "Live");
-  const foundingRemaining = COMPANY.foundingPilot.maxSlots;
-
+  const skylineBars = [
+    { h: '60%', c: 'var(--brand-primary)' },
+    { h: '90%', c: 'var(--brand-accent)' },
+    { h: '45%', c: 'var(--brand-primary)' },
+    { h: '75%', c: 'var(--brand-accent)' },
+    { h: '55%', c: 'var(--brand-primary)' },
+    { h: '85%', c: 'var(--brand-accent)' },
+  ];
   return (
     <>
-      <Nav />
-      <main className="flex flex-1 flex-col">
+      <Header />
+      <main style={{ flex: 1 }}>
         {/* Hero */}
-        <SkylineHero
-          title="Systems built to give businesses the upper hand"
-          subtitle={COMPANY.pledge}
-        />
-
-        {/* Standpoint feature block */}
-        <section className="mx-auto w-full max-w-6xl px-6 py-20">
-          <div className="grid gap-10 md:grid-cols-2 md:items-center">
-            <div>
-              <span className="text-sm font-medium text-standpoint-coral">Live product</span>
-              <h2 className="mt-2 font-heading text-3xl font-bold md:text-4xl">
-                Standpoint
-              </h2>
-              <p className="mt-4 text-lg text-ink/70">
-                Know where you stand. Fix where you lag. Standpoint turns scattered
-                competitor signals into a single 0–100 Standing Index — built for
-                South African SMEs.
-              </p>
-              <div className="mt-6 flex gap-4">
-                <a
-                  href="/standpoint"
-                  className="rounded-lg bg-standpoint-coral px-6 py-3 text-sm font-medium text-white hover:opacity-90"
-                >
-                  Explore Standpoint
-                </a>
-                <a
-                  href={STANDPOINT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg border border-line px-6 py-3 text-sm font-medium text-ink hover:bg-line/30"
-                >
-                  Launch app →
-                </a>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-line bg-white p-6 shadow-sm">
-              <div className="flex items-end gap-2">
-                {[70, 95, 55, 85, 60, 78, 45, 90].map((h, i) => (
-                  <div
-                    key={i}
-                    className="w-8 rounded-t md:w-10"
-                    style={{
-                      height: `${h}%`,
-                      background: `linear-gradient(180deg, ${["#FF5E3A", "#FFB347", "#14B8A6", "#8B5CF6"][i % 4]}, ${["#FF5E3A", "#FFB347", "#14B8A6", "#8B5CF6"][i % 4]}55)`,
-                    }}
-                  />
-                ))}
-              </div>
-              <div className="mt-4 text-sm text-ink/50">Standing Index — live competitive skyline</div>
+        <section className="hero">
+          <div className="hero-skyline">
+            {skylineBars.map((b, i) => (
+              <div key={i} className="bar" style={{ ['--bar-h' as string]: b.h, height: b.h, background: b.c }} />
+            ))}
+          </div>
+          <div className="hero-inner">
+            <h1 className="hero-motto">
+              We don&rsquo;t wait for validation.<br />
+              <span className="accent">We make the first move.</span>
+            </h1>
+            <p className="hero-sub">
+              Sakhi&rsquo;ksasa Holdings builds and owns businesses for the long term. We launch products that solve real problems, run them to a high standard, and reinvest what they earn into the next.
+            </p>
+            <div className="hero-cta-group">
+              <a href="/about" className="btn btn-accent">About Sakhi&rsquo;ksasa</a>
+              <a href="/standpoint" className="btn btn-outline" style={{ color: 'var(--surface)', borderColor: 'rgba(243,240,234,0.3)' }}>Explore Standpoint</a>
             </div>
           </div>
         </section>
 
-        {/* Systems pipeline teaser */}
-        <section className="bg-ink text-paper">
-          <div className="mx-auto w-full max-w-6xl px-6 py-20">
-            <h2 className="font-heading text-3xl font-bold">Systems pipeline</h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {systemsData.map((s) => (
-                <div key={s.id} className="rounded-xl border border-paper/10 bg-paper/5 p-5">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-heading text-lg font-semibold" style={{ color: s.accent }}>
-                      {s.name}
-                    </h3>
-                    <span
-                      className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                        s.status === "Live"
-                          ? "bg-standpoint-teal/20 text-standpoint-teal"
-                          : "bg-gold/20 text-gold"
-                      }`}
-                    >
-                      {s.status}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm text-paper/60">{s.summary}</p>
-                  {s.url && (
-                    <a
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-block text-xs text-gold hover:underline"
-                    >
-                      Visit →
-                    </a>
-                  )}
-                </div>
+        {/* Product — Standpoint */}
+        <section className="section container">
+          <div className="section-label">Our Product</div>
+          <div className="product-block">
+            <div style={{ flex: 1 }}>
+              <h3>Standpoint</h3>
+              <p style={{ marginTop: '12px' }}>
+                A competitive-intelligence platform that turns scattered competitor signals into a single 0&ndash;100 Standing Index. Built for businesses that want to know where they lead, where they lag, and what to do about it.
+              </p>
+              <div style={{ marginTop: '24px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <a href="/standpoint" className="btn btn-accent">Learn more</a>
+                <a href={COMPANY.standpoint.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ color: 'var(--surface)', borderColor: 'rgba(243,240,234,0.3)' }}>Launch Standpoint &rarr;</a>
+              </div>
+            </div>
+            <div className="product-skyline">
+              {[70, 95, 55, 85, 60, 78, 45, 90].map((h, i) => (
+                <div key={i} className="bar" style={{ height: `${h}%`, background: `linear-gradient(180deg, ${i % 2 ? 'var(--brand-accent)' : 'var(--brand-primary)'}, transparent)` }} />
               ))}
             </div>
-            <div className="mt-6">
-              <a href="/systems" className="text-sm text-gold hover:underline">
-                See all systems →
-              </a>
-            </div>
           </div>
         </section>
 
-        {/* Founding-partner banner */}
-        <section className="mx-auto w-full max-w-6xl px-6 py-16">
-          <div className="rounded-2xl border border-gold/30 bg-gold/5 p-8 text-center">
-            <h2 className="font-heading text-2xl font-bold text-ink">
-              Founding client pilot — {foundingRemaining} of {COMPANY.foundingPilot.maxSlots} seats remaining
-            </h2>
-            <p className="mt-3 text-ink/70">
-              Be among the first {COMPANY.foundingPilot.maxSlots} businesses to use Standpoint at{" "}
-              <strong>{COMPANY.foundingPilot.price}/mo for {COMPANY.foundingPilot.duration}</strong> (was{" "}
-              {COMPANY.foundingPilot.standardPrice}/mo). Setup fee waived.
-            </p>
-            <a
-              href="/standpoint"
-              className="mt-5 inline-block rounded-lg bg-gold px-6 py-3 text-sm font-medium text-white hover:opacity-90"
-            >
-              Claim a founding seat
-            </a>
-          </div>
+        {/* Vision teaser */}
+        <section className="section container">
+          <div className="section-label">Vision</div>
+          <h2 className="section-title" style={{ maxWidth: '900px' }}>{COMPANY.vision}</h2>
+          <p className="section-desc">{COMPANY.mission}</p>
+          <a href="/vision-mission" className="btn btn-primary">Read our vision &amp; mission</a>
         </section>
 
-        {/* About snippet */}
-        <section className="mx-auto w-full max-w-6xl px-6 pb-20">
-          <div className="grid gap-8 md:grid-cols-2 md:items-center">
+        {/* Leadership */}
+        <section className="section container" style={{ background: 'var(--surface-alt)', borderRadius: '20px' }}>
+          <div className="section-label">Leadership</div>
+          <div className="leader-card" style={{ marginTop: '24px' }}>
+            <div className="leader-photo">{COMPANY.founder.initials}</div>
             <div>
-              <h2 className="font-heading text-3xl font-bold">Built in South Africa, for South Africa</h2>
-              <p className="mt-4 text-ink/70">
-                {COMPANY.founder.bio}
-              </p>
-              <div className="mt-5 text-sm text-ink/50">
-                — {COMPANY.founder.name}, {COMPANY.founder.role}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-line p-6">
-              <div className="text-sm font-medium text-gold">Headquarters</div>
-              <div className="mt-1 text-ink/70">{COMPANY.address}</div>
-              <div className="mt-4 text-sm font-medium text-gold">Registration</div>
-              <div className="mt-1 text-ink/70">{COMPANY.regNumber}</div>
+              <div className="leader-name">{COMPANY.founder.name}</div>
+              <div className="leader-role">{COMPANY.founder.role}</div>
+              <p className="leader-bio" style={{ maxWidth: '600px' }}>{COMPANY.founder.bio}</p>
             </div>
           </div>
         </section>
