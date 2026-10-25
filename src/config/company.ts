@@ -28,9 +28,10 @@ export const COMPANY = {
     linkedin: "",
     twitter: "",
     facebook: "",
-    instagram: "",
+    instagram: "https://instagram.com/sakhi.holdings",
   },
 };
 
-export const STANDPOINT_URL = "https://standpoint-web.onrender.com";
+export const STANDPOINT_URL = "https://standpoint-web.onrender.com"
+export const STANDPOINT_API = "https://standpoint-web.onrender.com/api";
 export const FLEET_URL = "https://sakhi-ksasa-fleet.onrender.com";

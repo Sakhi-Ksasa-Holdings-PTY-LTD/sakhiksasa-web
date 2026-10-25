@@ -20,6 +20,7 @@ export function Footer() {
             <a href="/systems" className="text-paper/80 hover:text-gold">Systems</a>
             <a href="/about" className="text-paper/80 hover:text-gold">About</a>
             <a href="/contact" className="text-paper/80 hover:text-gold">Contact</a>
+            <a href="https://instagram.com/sakhi.holdings" target="_blank" rel="noopener noreferrer" className="text-paper/80 hover:text-gold">Instagram</a>
           </div>
           <div className="flex flex-col gap-2 text-sm">
             <a href="/legal/terms" className="text-paper/80 hover:text-gold">Terms of Service</a>

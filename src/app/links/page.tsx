@@ -75,7 +75,9 @@ export default function LinksPage() {
           {/* Social (placeholder) */}
           <div className="mt-8">
             <h2 className="font-heading text-lg font-semibold text-ink/70">Social</h2>
-            <p className="mt-2 text-sm text-ink/40">Social links will be added as they become available.</p>
+            <a href="https://instagram.com/sakhi.holdings" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-ink/70 hover:text-gold">
+                <span>Instagram: @sakhi.holdings →</span>
+              </a>
           </div>
         </section>
       </main>
