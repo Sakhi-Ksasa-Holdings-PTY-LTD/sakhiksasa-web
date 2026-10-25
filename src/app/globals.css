@@ -1,17 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  --color-ink: #16213a;
-  --color-paper: #fbf9f4;
-  --color-gold: #b08a3e;
-  --color-line: #e7e0d1;
-  --color-standpoint-coral: #FF5E3A;
-  --color-standpoint-amber: #FFB347;
-  --color-standpoint-teal: #14B8A6;
-  --color-standpoint-violet: #8B5CF6;
-  --font-heading: "Fraunces", serif;
-  --font-body: "Inter", sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background-color: #fbf9f4;
