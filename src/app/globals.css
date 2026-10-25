@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #16213a;
+  --color-paper: #fbf9f4;
+  --color-gold: #b08a3e;
+  --color-line: #e7e0d1;
+  --color-standpoint-coral: #FF5E3A;
+  --color-standpoint-amber: #FFB347;
+  --color-standpoint-teal: #14B8A6;
+  --color-standpoint-violet: #8B5CF6;
+  --font-heading: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+body {
+  background-color: #fbf9f4;
+  color: #16213a;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skyline bars */
+@keyframes barRise {
+  from { height: 0; }
+  to { height: var(--bar-h); }
+}
+.bar {
+  animation: barRise 0.8s ease-out forwards;
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "standpoint-hero",
+    "type": "image",
+    "title": "Standpoint — Standing Index Skyline",
+    "src": "/media/standpoint-skyline.png",
+    "alt": "3D competitive skyline showing bars rising and falling across metrics",
+    "tag": "Standpoint"
+  },
+  {
+    "id": "placeholder-1",
+    "type": "image",
+    "title": "Add your media here",
+    "src": "/media/placeholder.png",
+    "alt": "Placeholder image — replace with your ad poster or video",
+    "tag": "Media"
+  }
+]
