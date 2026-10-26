@@ -17,13 +17,12 @@ export const BRAND = {
   legalName: "Sakhi'ksasa Holdings (Pty) Ltd",
   shortName: "Sakhi'ksasa",
   regNumber: "2026/405064/07",
-  location: "Vryheid, KwaZulu-Natal, South Africa",
-  locationShort: "Vryheid, KZN",
+  location: "South Africa",
+  locationShort: "South Africa",
   founded: "2026",
   email: "sakhiksasaholdingsptyltd@gmail.com",
   instagram: "https://instagram.com/sakhi.holdings",
   instagramHandle: "@sakhi.holdings",
-  whatsapp: "+27 78 195 6558",
 
   /** Motto — the brand promise, headline-grade. */
   motto: "We don't wait for validation. We make the first move.",
@@ -77,7 +76,7 @@ export const BRAND = {
     "Launch products that solve real problems for real businesses, and run them to a standard our clients can rely on.",
     "Reinvest earnings into the next venture, so the company grows without depending on outside capital.",
     "Be recognised as a company that holds itself to the highest standard of integrity and quality, regardless of scale.",
-    "Prove that world-class companies can be built from Vryheid — and that geography is not a ceiling.",
+    "Prove that world-class companies can be built from anywhere — and that geography is not a ceiling.",
   ],
 
   /** Founder / leadership. */
@@ -85,9 +84,9 @@ export const BRAND = {
     name: "Sanele T. Zwane",
     role: "Founder & Chief Executive",
     initials: "SZ",
-    bio: "Sanele T. Zwane founded Sakhi'ksasa Holdings with a conviction that enduring businesses are built by those who make the first move — not by those who wait for permission. Based in Vryheid, KwaZulu-Natal, he leads the company's strategy, capital allocation, and product vision.",
+    bio: "Sanele T. Zwane founded Sakhi'ksasa Holdings with a conviction that enduring businesses are built by those who make the first move — not by those who wait for permission. As the sole owner, he leads the company's strategy, capital allocation, and product vision.",
     quote:
-      "Geography is not a ceiling. Discipline is the only one that matters.",
+      "Discipline is the only ceiling that matters.",
   },
 
   /** The flagship product — Standpoint. */

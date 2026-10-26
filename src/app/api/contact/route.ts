@@ -22,9 +22,7 @@ const TOPICS = new Set([
   'General enquiry',
   'Standpoint — sales',
   'Standpoint — support',
-  'Partnership',
   'Press / Media',
-  'Investor relations',
 ]);
 
 const COMPANY_INBOX = process.env.COMPANY_CONTACT_EMAIL || 'sakhiksasaholdingsptyltd@gmail.com';

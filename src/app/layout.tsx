@@ -24,12 +24,10 @@ export const metadata: Metadata = {
     template: "%s · Sakhi'ksasa Holdings",
   },
   description:
-    "Sakhi'ksasa Holdings is a self-funded holding company that builds, owns, and operates businesses for the long term. Based in Vryheid, KwaZulu-Natal, South Africa. Home of Standpoint.",
+    "Sakhi'ksasa Holdings is a self-funded, privately-owned holding company that builds, owns, and operates businesses for the long term. Based in South Africa. Home of Standpoint.",
   keywords: [
     "Sakhi'ksasa Holdings",
     "holding company",
-    "Vryheid",
-    "KwaZulu-Natal",
     "South Africa",
     "Standpoint",
     "competitive intelligence",
@@ -39,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sakhi'ksasa Holdings (Pty) Ltd",
     description:
-      "We don't wait for validation. We make the first move. A self-funded holding company building enduring businesses from Vryheid, KZN.",
+      "We don't wait for validation. We make the first move. A self-funded holding company building enduring businesses in South Africa.",
     siteName: "Sakhi'ksasa Holdings",
     type: "website",
   },
@@ -47,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sakhi'ksasa Holdings",
     description:
-      "We build enduring businesses that outlast their founders. Based in Vryheid, KwaZulu-Natal, South Africa.",
+      "We build enduring businesses that outlast their founders. Based in South Africa.",
   },
   robots: { index: true, follow: true },
 };
@@ -65,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: "Sakhi'ksasa Holdings (Pty) Ltd",
               description:
                 "A self-funded holding company that builds, owns, and operates businesses for the long term.",
-              foundingLocation: "Vryheid, KwaZulu-Natal, South Africa",
+              foundingLocation: "South Africa",
               areaServed: "Global",
               founder: { "@type": "Person", name: "Sanele T. Zwane" },
             }),

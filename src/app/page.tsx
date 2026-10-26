@@ -208,8 +208,8 @@ function Hero() {
             <dd className="h-stat-label">Self-funded</dd>
           </div>
           <div>
-            <dt className="h-stat-value">KZN</dt>
-            <dd className="h-stat-label">Headquartered</dd>
+            <dt className="h-stat-value">RSA</dt>
+            <dd className="h-stat-label">Based in</dd>
           </div>
         </dl>
       </div>
@@ -239,7 +239,7 @@ function About() {
           </p>
           <div className="h-about-body">
             <p>
-              We are a self-funded holding company headquartered in Vryheid, KwaZulu-Natal.
+              We are a self-funded, privately-owned holding company based in South Africa.
               We launch products that solve real problems for real businesses, run them to a
               high standard, and reinvest what they earn into the next.
             </p>
@@ -272,7 +272,7 @@ function About() {
               <dd>{BRAND.founded}</dd>
             </div>
             <div className="h-fact-row">
-              <dt>HQ</dt>
+              <dt>Based in</dt>
               <dd>{BRAND.locationShort}</dd>
             </div>
             <div className="h-fact-row">
@@ -481,8 +481,7 @@ function Contact() {
           <div className="h-eyebrow">Contact</div>
           <h2 className="h-section-title">Let&rsquo;s talk.</h2>
           <p className="h-section-desc">
-            For partnership, press, investor relations, or product enquiries — reach the
-            office directly or use the form. We respond within two business days.
+            For more enquiries, reach the office at <a href={`mailto:${BRAND.email}`} style={{ color: 'var(--h-primary)', textDecoration: 'underline' }}>{BRAND.email}</a> or use the form below. We respond within two business days.
           </p>
         </div>
         <div className="h-contact-grid">
@@ -494,20 +493,6 @@ function Contact() {
                 <div className="h-contact-value">
                   <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
                 </div>
-              </div>
-            </div>
-            <div className="h-contact-item">
-              <div className="h-contact-icon"><Icon.MapPin /></div>
-              <div>
-                <div className="h-contact-label">Registered office</div>
-                <div className="h-contact-value">{BRAND.location}</div>
-              </div>
-            </div>
-            <div className="h-contact-item">
-              <div className="h-contact-icon"><Icon.Whatsapp /></div>
-              <div>
-                <div className="h-contact-label">WhatsApp (founder)</div>
-                <div className="h-contact-value">{BRAND.whatsapp}</div>
               </div>
             </div>
             <div className="h-contact-item">
@@ -552,9 +537,7 @@ function Contact() {
                   <option>General enquiry</option>
                   <option>Standpoint — sales</option>
                   <option>Standpoint — support</option>
-                  <option>Partnership</option>
                   <option>Press / Media</option>
-                  <option>Investor relations</option>
                 </select>
               </div>
             </div>
@@ -597,9 +580,6 @@ function Footer() {
               <a href={`mailto:${BRAND.email}`} aria-label="Email">
                 <Icon.Mail />
               </a>
-              <a href={`https://wa.me/${BRAND.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                <Icon.Whatsapp />
-              </a>
             </div>
           </div>
           <div className="h-footer-col">
@@ -621,7 +601,7 @@ function Footer() {
             </ul>
           </div>
           <div className="h-footer-col">
-            <div className="h-footer-col-title">Registered office</div>
+            <div className="h-footer-col-title">Get in touch</div>
             <ul>
               <li style={{ color: 'rgba(243, 240, 234, 0.85)' }}>{BRAND.location}</li>
               <li style={{ color: 'rgba(243, 240, 234, 0.55)' }}>Reg: {BRAND.regNumber}</li>
@@ -634,7 +614,7 @@ function Footer() {
             © {new Date().getFullYear()} {BRAND.legalName}. All rights reserved. {BRAND.regNumber}.
           </div>
           <div className="h-footer-copy">
-            Self-funded · Built in Vryheid, KZN · Made in South Africa.
+            Self-funded · Privately owned · Made in South Africa.
           </div>
         </div>
       </div>
