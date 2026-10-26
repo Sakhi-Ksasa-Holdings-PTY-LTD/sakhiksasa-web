@@ -90,7 +90,14 @@ const Icon = {
 function BrandMark() {
   return (
     <a href="#home" className="h-brand" aria-label={`${BRAND.shortName} — home`}>
-      <span className="h-brand-mark" aria-hidden="true" />
+      <img
+        src="/favicon.png"
+        alt=""
+        width={40}
+        height={40}
+        className="h-brand-mark-img"
+        aria-hidden="true"
+      />
       <span className="h-brand-name">
         <strong>Sakhi&rsquo;ksasa</strong>
         <span>Holdings</span>

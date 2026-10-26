@@ -1,0 +1,29 @@
+{
+  "name": "Sakhi'ksasa Holdings (Pty) Ltd",
+  "short_name": "Sakhi'ksasa",
+  "description": "A self-funded, privately-owned holding company building enduring businesses in South Africa. Home of Standpoint.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f0ea",
+  "theme_color": "#2b2fd9",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
