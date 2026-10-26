@@ -15,3 +15,13 @@ build/
 # Misc
 .DS_Store
 *.log
+
+# Runtime logs
+logs/
+*.log
+
+# Next.js type declarations (auto-generated)
+next-env.d.ts
+
+# Bun lockfile (keep if you prefer reproducible installs — comment out to track)
+# bun.lock
