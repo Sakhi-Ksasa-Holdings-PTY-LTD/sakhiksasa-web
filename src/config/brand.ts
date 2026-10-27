@@ -27,6 +27,11 @@ export const BRAND = {
   showRegistration: false, // [CONFIRM] flip to true only on Don's explicit OK
   location: "South Africa",
   email: "sakhiksasaholdingsptyltd@gmail.com",
+  /**
+   * Division mark — the logo used by the Standpoint system. This is THE mark
+   * carried by Vantage and by every system under the Vantage division.
+   */
+  divisionLogo: "/favicon.png",
   instagram: "https://instagram.com/sakhi.holdings",
   instagramHandle: "@sakhi.holdings",
 
@@ -107,8 +112,11 @@ export const BRAND = {
       },
     ],
     signals: ["SEO", "Social", "Ad spend", "Reviews", "Pricing"],
-    /** Pricing — excl. VAT, verbatim from Don. */
-    vatNote: "All prices exclude VAT.",
+    /**
+     * Pricing note. The company is NOT registered for VAT (no income yet),
+     * so no VAT is charged or referenced — prices are final, in ZAR.
+     */
+    vatNote: "All prices in South African rand (ZAR). Final — no VAT added.",
     tiers: [
       { name: "Free", monthly: "R0", annual: "R0", note: "Forever-free" },
       { name: "Starter", monthly: "R1,000/mo", annual: "R10,000/yr", note: "3 competitors" },
@@ -118,6 +126,13 @@ export const BRAND = {
     ],
     foundingPilot: {
       slots: 3,
+      /**
+       * Slots still open. ONE-LINE UPDATE after each signing:
+       *   after founding client #1 signs → 2
+       *   after founding client #2 signs → 1
+       *   after founding client #3 signs → 0 (then remove the block)
+       */
+      slotsRemaining: 3,
       text: "The first 3 clients get Starter features at R500/mo for 6 months, then R1,000/mo. Setup waived, with free assisted setup.",
     },
     /** Demo: read-only showcase not built yet → email CTA. Flip when live. */

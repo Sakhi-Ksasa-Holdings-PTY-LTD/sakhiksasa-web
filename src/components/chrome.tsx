@@ -59,6 +59,38 @@ export function IconArrowRight() {
   );
 }
 
+/* ----------------------------- Ambient orbs -----------------------------
+   Fixed background layer of slow-drifting brand-coloured light orbs.
+   Purely decorative — they sit BEHIND all content and give the glass
+   surfaces something alive to blur. Server component: zero JS. */
+export function GlassOrbs() {
+  return (
+    <div className="h-orbs" aria-hidden="true">
+      <span className="h-orb h-orb-blue" />
+      <span className="h-orb h-orb-orange" />
+      <span className="h-orb h-orb-far" />
+    </div>
+  );
+}
+
+/* ----------------------------- Division mark -----------------------------
+   The official division logo (the Standpoint system mark), presented in a
+   glass tile. Used on the Vantage cover and on every Vantage system card. */
+export function DivisionMark({ size = 'md', className = '' }: { size?: 'md' | 'lg'; className?: string }) {
+  return (
+    <span className={`h-division-mark h-division-mark-${size} ${className}`.trim()}>
+      <img
+        src={BRAND.divisionLogo}
+        alt=""
+        width={size === 'lg' ? 128 : 56}
+        height={size === 'lg' ? 128 : 56}
+        className="h-division-mark-img"
+        aria-hidden="true"
+      />
+    </span>
+  );
+}
+
 /* ----------------------------- Brand mark ----------------------------- */
 export function BrandMark() {
   return (

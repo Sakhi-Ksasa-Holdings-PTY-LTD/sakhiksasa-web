@@ -757,7 +757,7 @@ a { color: inherit; text-decoration: none; }
 .h-vision-inner { position: relative; z-index: 2; }
 .h-vision .h-eyebrow { color: var(--h-accent); }
 .h-vision .h-eyebrow::before { background: var(--h-accent); }
-.h-vision-statement {
+.holdings .h-vision-statement {
   font-family: var(--h-font-display);
   font-size: clamp(2rem, 4.5vw, 3.5rem);
   font-weight: 600;
@@ -1411,8 +1411,10 @@ a { color: inherit; text-decoration: none; }
    Same tokens as above (logo palette, Fraunces + Inter).
 ============================================================ */
 
-/* Company name LARGE in the hero (company-first) */
-.h-hero-company {
+/* Company name LARGE in the hero (company-first)
+   NOTE: `.holdings` prefix required — the `.holdings h1/h2` reset (0-1-1)
+   outranks a single class and would paint these ink-on-ink-dark. */
+.holdings .h-hero-company {
   font-family: var(--h-font-display);
   font-size: clamp(3.5rem, 9vw, 7.5rem);
   font-weight: 600;
@@ -1439,7 +1441,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--h-accent);
   margin: 0 0 var(--h-space-4);
 }
-.h-hero-division-name {
+.holdings .h-hero-division-name {
   font-family: var(--h-font-display);
   font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 600;
@@ -1679,4 +1681,291 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .h-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .h-skyline .bar { animation: none !important; }
+}
+
+/* ============================================================
+   GLASS SYSTEM — makes the site feel "alive".
+   A fixed layer of slow-drifting brand-coloured orbs sits behind
+   the content; every surface above it is translucent glass that
+   blurs the moving light. Pure CSS — no JS, no images.
+============================================================ */
+
+.holdings {
+  /* Glass tokens */
+  --h-glass: rgba(255, 255, 255, 0.55);
+  --h-glass-strong: rgba(255, 255, 255, 0.72);
+  --h-glass-border: rgba(255, 255, 255, 0.78);
+  --h-glass-border-soft: rgba(255, 255, 255, 0.55);
+  --h-glass-blur: 18px;
+  --h-glass-shadow: 0 20px 45px -24px rgba(26, 26, 46, 0.28);
+  --h-glow-primary: rgba(43, 47, 217, 0.32);
+  --h-glow-accent: rgba(232, 89, 12, 0.30);
+}
+
+/* ---------- Ambient orb layer (fixed, behind everything) ---------- */
+.h-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.h-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform;
+}
+.h-orb-blue {
+  width: 46vw; height: 46vw;
+  min-width: 420px; min-height: 420px;
+  top: -12%; left: -10%;
+  background: radial-gradient(circle at 32% 32%, rgba(43, 47, 217, 0.42), rgba(43, 47, 217, 0.10) 58%, transparent 72%);
+  animation: h-drift-a 26s var(--h-ease) infinite alternate;
+}
+.h-orb-orange {
+  width: 36vw; height: 36vw;
+  min-width: 340px; min-height: 340px;
+  top: 38%; right: -12%;
+  background: radial-gradient(circle at 40% 36%, rgba(232, 89, 12, 0.36), rgba(232, 89, 12, 0.08) 58%, transparent 72%);
+  animation: h-drift-b 33s var(--h-ease) infinite alternate;
+}
+.h-orb-far {
+  width: 32vw; height: 32vw;
+  min-width: 300px; min-height: 300px;
+  bottom: -14%; left: 26%;
+  background: radial-gradient(circle at 50% 45%, rgba(43, 47, 217, 0.16), rgba(232, 89, 12, 0.10) 52%, transparent 72%);
+  animation: h-drift-c 40s var(--h-ease) infinite alternate;
+}
+@keyframes h-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(7vw, 5vh, 0) scale(1.14); }
+}
+@keyframes h-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.08); }
+  to   { transform: translate3d(-6vw, -6vh, 0) scale(0.96); }
+}
+@keyframes h-drift-c {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(5vw, -5vh, 0) scale(1.12); }
+}
+
+/* Content sits above the orb layer */
+.holdings main { position: relative; z-index: 1; }
+.h-footer { position: relative; z-index: 1; }
+
+/* Light sections become transparent so the drifting light shows through */
+.h-about,
+.h-product {
+  background: transparent;
+}
+
+/* ---------- Glass surfaces ---------- */
+.h-house-card,
+.h-value-light,
+.h-pillar,
+.h-tier,
+.h-gallery-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--h-glass);
+  border: 1px solid var(--h-glass-border-soft);
+  box-shadow: var(--h-glass-shadow);
+  -webkit-backdrop-filter: blur(var(--h-glass-blur)) saturate(150%);
+  backdrop-filter: blur(var(--h-glass-blur)) saturate(150%);
+}
+/* Diagonal sheen across every glass card */
+.h-house-card::before,
+.h-value-light::before,
+.h-pillar::before,
+.h-tier::before,
+.h-gallery-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.06) 30%, transparent 55%);
+  pointer-events: none;
+}
+/* Hover: glass catches the light */
+.h-house-card:hover {
+  border-color: rgba(43, 47, 217, 0.45);
+  box-shadow: 0 28px 54px -22px var(--h-glow-primary), inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+.h-value-light:hover,
+.h-pillar:hover {
+  border-color: rgba(232, 89, 12, 0.40);
+  box-shadow: 0 24px 48px -22px var(--h-glow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+/* Founding block — accent-tinted glass */
+.h-founding {
+  background: linear-gradient(118deg, rgba(253, 233, 214, 0.72), rgba(255, 255, 255, 0.5) 60%);
+  border: 1.5px solid rgba(232, 89, 12, 0.42);
+  box-shadow: 0 26px 52px -26px var(--h-glow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(var(--h-glass-blur)) saturate(150%);
+  backdrop-filter: blur(var(--h-glass-blur)) saturate(150%);
+  position: relative;
+  overflow: hidden;
+}
+.h-founding::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0.4) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+/* Signal chips — glass pills */
+.h-signal-chip {
+  background: var(--h-glass);
+  border: 1.5px solid var(--h-glass-border-soft);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: 0 10px 24px -16px rgba(26, 26, 46, 0.25);
+}
+.h-signal-index {
+  box-shadow: 0 12px 28px -12px var(--h-glow-primary);
+}
+
+/* Video frame — dark glass bezel */
+.h-video-frame {
+  padding: var(--h-space-3);
+  background: rgba(26, 26, 46, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 34px 64px -30px rgba(26, 26, 46, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  backdrop-filter: blur(16px) saturate(130%);
+}
+.h-video { border-radius: calc(var(--h-radius) - 4px); }
+
+/* Cookie banner — floating glass */
+.h-cookie {
+  background: var(--h-glass-strong);
+  border: 1px solid var(--h-glass-border);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: 0 24px 50px -22px rgba(26, 26, 46, 0.4);
+}
+
+/* Mobile drawer — frosted glass panel */
+.h-drawer-panel {
+  background: rgba(243, 240, 234, 0.86);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(24px) saturate(140%);
+}
+.h-drawer {
+  background: rgba(26, 26, 46, 0.32);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* Header — brighter glass so the drifting light reads through it */
+.h-header {
+  background: rgba(243, 240, 234, 0.68);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+.h-header[data-scrolled="true"] {
+  background: rgba(243, 240, 234, 0.88);
+}
+
+/* Ghost button on dark hero — glass chip */
+.h-btn-ghost-light {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+.h-btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Division mark (the Standpoint system logo) ---------- */
+.h-division-mark {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55));
+  border: 1px solid var(--h-glass-border);
+  box-shadow: 0 16px 32px -16px var(--h-glow-primary), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+.h-division-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0.55) 0%, transparent 42%);
+  pointer-events: none;
+}
+.h-division-mark-md { width: 64px; height: 64px; }
+.h-division-mark-lg {
+  width: clamp(104px, 14vw, 148px);
+  height: clamp(104px, 14vw, 148px);
+  border-radius: 28px;
+  box-shadow: 0 26px 54px -20px var(--h-glow-primary), 0 0 0 6px rgba(255, 255, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  animation: h-mark-float 7s var(--h-ease) infinite alternate;
+}
+.h-division-mark-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@keyframes h-mark-float {
+  from { transform: translate3d(0, -5px, 0); }
+  to   { transform: translate3d(0, 6px, 0); }
+}
+
+/* House-card top row: mark left, Live badge right */
+.h-house-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--h-space-3);
+}
+
+/* ---------- Vantage cover layout ---------- */
+.h-cover-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.h-cover-inner .h-hero-sub { margin-left: auto; margin-right: auto; }
+.h-cover-figure {
+  margin: 0 0 var(--h-space-5);
+  position: relative;
+  display: inline-block;
+}
+.h-cover-figure-sm { margin-bottom: var(--h-space-4); }
+
+/* Screen-reader-only utility */
+.sr-only-h {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Fallbacks & motion safety ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .h-house-card, .h-value-light, .h-pillar, .h-tier, .h-gallery-item {
+    background: rgba(255, 255, 255, 0.94);
+  }
+  .h-founding { background: rgba(253, 233, 214, 0.94); }
+  .h-cookie { background: rgba(255, 255, 255, 0.97); }
+  .h-drawer-panel { background: var(--h-surface); }
+  .h-video-frame { background: var(--h-ink); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-orb, .h-division-mark-lg { animation: none !important; }
+  .h-orb { filter: blur(80px); }
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nav, Footer, CookieBanner, Reveal } from '@/components/chrome';
+import { Nav, Footer, CookieBanner, Reveal, GlassOrbs, DivisionMark } from '@/components/chrome';
 import { BRAND } from '@/config/brand';
 
 /* ============================================================
@@ -29,12 +29,17 @@ export default function StandpointPage() {
 
   return (
     <div className="holdings">
+      <GlassOrbs />
       <Nav />
       <main style={{ flex: 1 }}>
         {/* ---------- PRODUCT HERO ---------- */}
         <section className="h-hero" aria-label="Standpoint product" style={{ padding: 'var(--h-space-16) 0 var(--h-space-12)' }}>
           <div className="h-hero-grid" aria-hidden="true" />
           <div className="h-hero-inner">
+            <figure className="h-cover-figure h-cover-figure-sm">
+              <DivisionMark size="md" />
+              <figcaption className="sr-only-h">The Standpoint system mark.</figcaption>
+            </figure>
             <div className="h-hero-eyebrow">A Vantage product · {BRAND.shortName} Holdings · Live</div>
             <h1 className="h-hero-division-name">Standpoint</h1>
             <p className="h-hero-motto-line">{sp.tagline}</p>
@@ -201,7 +206,9 @@ export default function StandpointPage() {
             {/* Founding Client slots */}
             <Reveal>
               <div className="h-founding">
-                <div className="h-founding-badge">Founding clients · {sp.foundingPilot.slots} slots</div>
+                <div className="h-founding-badge">
+                  {`Founding clients · ${sp.foundingPilot.slotsRemaining} of ${sp.foundingPilot.slots} slot${Number(sp.foundingPilot.slots) === 1 ? '' : 's'} open`}
+                </div>
                 <p className="h-founding-text">{sp.foundingPilot.text}</p>
                 <a href={`mailto:${BRAND.email}?subject=${encodeURIComponent('Founding client — Standpoint')}`} className="h-btn h-btn-primary h-btn-lg">
                   Claim a founding slot

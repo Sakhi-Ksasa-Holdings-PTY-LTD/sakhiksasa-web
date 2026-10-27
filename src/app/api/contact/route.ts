@@ -172,7 +172,7 @@ export async function POST(req: Request) {
   return NextResponse.json(
     {
       ok: true,
-      message: 'Your enquiry has been received. We respond within two business days.',
+      message: 'Your enquiry has been received.',
       loggedAt: ts,
     },
     { status: 200 },

@@ -25,3 +25,4 @@ next-env.d.ts
 
 # Bun lockfile (keep if you prefer reproducible installs — comment out to track)
 # bun.lock
+tsconfig.tsbuildinfo

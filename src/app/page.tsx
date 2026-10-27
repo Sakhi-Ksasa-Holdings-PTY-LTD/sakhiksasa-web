@@ -1,4 +1,4 @@
-import { Nav, Footer, CookieBanner, Reveal, IconArrowRight } from '@/components/chrome';
+import { Nav, Footer, CookieBanner, Reveal, IconArrowRight, GlassOrbs, DivisionMark } from '@/components/chrome';
 import { BRAND, visibleDivisions } from '@/config/brand';
 
 /* ============================================================
@@ -11,10 +11,9 @@ import { BRAND, visibleDivisions } from '@/config/brand';
 const SKYLINE_HEIGHTS = [62, 88, 48, 78, 56, 92, 44, 82, 60, 70, 50, 86];
 
 export default function HomePage() {
-  const vantage = visibleDivisions[0];
-
   return (
     <div className="holdings">
+      <GlassOrbs />
       <Nav />
       <main style={{ flex: 1 }}>
         {/* ---------- HERO: company name LARGE + motto ---------- */}
@@ -102,10 +101,13 @@ export default function HomePage() {
             <div className="h-house-grid">
               {visibleDivisions.map((d) => (
                 <Reveal key={d.slug}>
-                  <a href={`/${d.slug}`} className="h-house-card" aria-label={`${d.name} division`}>
-                    <div className="h-house-status">
-                      <span className="h-status-dot" aria-hidden="true" />
-                      Live
+                  <a href={`/${d.slug}`} className="h-house-card h-house-card-division" aria-label={`${d.name} division`}>
+                    <div className="h-house-card-top">
+                      <DivisionMark size="md" />
+                      <div className="h-house-status">
+                        <span className="h-status-dot" aria-hidden="true" />
+                        Live
+                      </div>
                     </div>
                     <h3 className="h-house-name">{d.name}</h3>
                     <p className="h-house-desc">{d.descriptor}</p>

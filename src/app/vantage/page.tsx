@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nav, Footer, CookieBanner, Reveal, IconArrowRight } from '@/components/chrome';
+import { Nav, Footer, CookieBanner, Reveal, IconArrowRight, GlassOrbs, DivisionMark } from '@/components/chrome';
 import { BRAND, visibleDivisions } from '@/config/brand';
 
 /* ============================================================
@@ -20,12 +20,21 @@ export default function VantagePage() {
 
   return (
     <div className="holdings">
+      <GlassOrbs />
       <Nav />
       <main style={{ flex: 1 }}>
-        {/* ---------- DIVISION HERO ---------- */}
-        <section className="h-hero" aria-label="Vantage division" style={{ padding: 'var(--h-space-16) 0 var(--h-space-12)' }}>
+        {/* ---------- DIVISION COVER ----------
+            The cover carries the division mark — the same logo used by the
+            Standpoint system, and by every system under Vantage. */}
+        <section className="h-hero h-cover" aria-label="Vantage division" style={{ padding: 'var(--h-space-16) 0 var(--h-space-12)' }}>
           <div className="h-hero-grid" aria-hidden="true" />
-          <div className="h-hero-inner">
+          <div className="h-hero-inner h-cover-inner">
+            <figure className="h-cover-figure">
+              <DivisionMark size="lg" />
+              <figcaption className="sr-only-h">
+                The Vantage division mark — carried by every system in the division.
+              </figcaption>
+            </figure>
             <div className="h-hero-eyebrow">A {BRAND.shortName} division · Live</div>
             <h1 className="h-hero-division-name">Vantage</h1>
             <p className="h-hero-sub" style={{ maxWidth: '52ch' }}>{division.descriptor}</p>
@@ -43,9 +52,12 @@ export default function VantagePage() {
             <div className="h-house-grid">
               <Reveal>
                 <a href="/vantage/standpoint" className="h-house-card" aria-label={`${sp.name} product`}>
-                  <div className="h-house-status">
-                    <span className="h-status-dot" aria-hidden="true" />
-                    Live
+                  <div className="h-house-card-top">
+                    <DivisionMark size="md" />
+                    <div className="h-house-status">
+                      <span className="h-status-dot" aria-hidden="true" />
+                      Live
+                    </div>
                   </div>
                   <h3 className="h-house-name">{sp.name}</h3>
                   <p className="h-house-desc">{sp.tagline} A competitive-intelligence platform built around a single 0–100 Standing Index.</p>
