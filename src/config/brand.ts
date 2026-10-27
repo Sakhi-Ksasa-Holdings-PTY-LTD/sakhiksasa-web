@@ -71,9 +71,13 @@ export const BRAND = {
     {
       name: "Vantage",
       slug: "vantage",
-      /** [CONFIRM] proposed one-sentence descriptor — Don to confirm/edit. */
+      /**
+       * Division-level descriptor (NOT product-specific). Describes the whole
+       * Vantage division — competitive-intelligence systems in the plural —
+       * so it stays accurate as more products ship under Vantage.
+       */
       descriptor:
-        "Vantage builds competitive-intelligence software that shows a company exactly where it stands against its competitors.",
+        "Vantage builds competitive-intelligence systems that show a company where it stands — and what to do about it.",
       status: "live" as const,
       visible: true,
     },

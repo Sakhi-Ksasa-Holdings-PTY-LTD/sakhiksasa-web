@@ -67,7 +67,6 @@ export default function StandpointPage() {
                   className="h-video"
                 >
                   <source src={`${ASSETS}/video/standpoint_intro_16x9.mp4`} type="video/mp4" />
-                  <track kind="captions" src={`${ASSETS}/video/standpoint_intro_captions.vtt`} srcLang="en" label="English" />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -123,10 +122,12 @@ export default function StandpointPage() {
                   className="h-video"
                 >
                   <source src={`${ASSETS}/video/standpoint_how_it_works_16x9.mp4`} type="video/mp4" />
-                  <track kind="captions" src={`${ASSETS}/video/standpoint_how_captions.vtt`} srcLang="en" label="English" />
                   Your browser does not support the video tag.
                 </video>
               </div>
+              <p className="h-section-desc" style={{ fontSize: '0.85rem', marginTop: 'var(--h-space-3)', opacity: 0.7 }}>
+                Music: &ldquo;Long Note Two&rdquo; — Kevin MacLeod (incompetech.com), licensed under CC-BY 4.0.
+              </p>
             </Reveal>
           </div>
         </section>

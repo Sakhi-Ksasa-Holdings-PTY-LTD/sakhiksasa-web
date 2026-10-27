@@ -5,10 +5,98 @@
 
 **Method note:** This research was compiled using 14 web searches via the z-ai web_search function (2 additional queries returned no results). Search themes: competitive-intelligence tool comparisons and pricing (Crayon, Klue, Kompyte, Contify, Cipher/Knowledge360, Similarweb, Semrush, budget tools), South African SME fintech/business-software platforms (Yoco, Lula, Bridgement, JUMO, Sage), South African web/software agencies, and the venture-studio/product-studio model (global + Africa). Findings below rely on vendor comparison sites, marketplaces (G2, Capterra, TrustRadius, Vendr-reported data via aggregators), and news snippets captured at search time.
 
+**Addendum (Round 4, 27 Oct 2026) — Industry focus verified.** The founder asked
+that competitor research be framed around **the industry that is the single
+largest contributor to South Africa's GDP** (and ideally a leading contributor
+to world GDP). The claim was double-checked before any industry was chosen:
+**"Finance, real estate and business services" is genuinely South Africa's
+largest industry — 24.8% of GDP in Q1 2026** (Stats SA release P0441, table 1),
+~1.5× the next industry (Personal services, 15.9%). The global version of the
+claim is **overstated**: at world level it is *services overall* (~63%,
+World Bank) that is largest, not "finance" as a single industry. So the
+honest framing is **"South Africa's largest industry"**, not "the world's
+largest." New **Section 0** below applies that focus; Sections 1–6 (the
+original CI-vendor, SA-software and studio research) remain valid and are
+kept intact.
+
 **Confidence convention:**
 - Prices marked **"reported, unverified"** come from third-party comparison/blog sources, not official vendor price lists (most CI vendors do not publish pricing).
 - Sakhi'ksasa's own pricing (Free / Starter R1,000/mo / Growth R2,500/mo / Pro R7,500/mo / Enterprise from R20,000/mo, ZAR, final) is internal fact, not a research claim.
 - Rough USD comparisons use ~R18 ≈ US$1 (approximate, unverified rate). For scale: Standpoint's Starter R1,000/mo ≈ US$55/mo (~US$660/yr); Enterprise from R20,000/mo ≈ US$1,100/mo (~US$13,200/yr).
+
+---
+
+## 0. Industry focus — South Africa's largest industry, verified
+
+**Why this industry.** Before choosing which competitors to study, the
+founder asked that the choice be grounded in an industry that leads GDP
+contribution. The GDP claim was checked first:
+
+- **South Africa — TRUE.** Stats SA quarterly release P0441 (Q1 2026,
+  constant 2015 prices, seasonally adjusted): **Finance, real estate and
+  business services = 24.79% of GDP** (R1,183,046m of R4,772,091m), the
+  single largest of the ten SIC industries — ~1.5× the runner-up (Personal
+  services, 15.87%). The ranking is stable across the whole 2024–2026
+  window (Q1 2024: 24.08%; FY2025: 24.57%). Source:
+  https://www.statssa.gov.za/publications/P0441/P04411stQuarter2026.pdf
+- **World — overstated.** The largest contributor to world GDP is the
+  **services (tertiary) sector at ~63%** (World Bank, NV.SRV.TOTL.ZS,
+  2023), not "finance" as a single industry. No authoritative source could
+  be found ranking finance/insurance as the single largest world industry
+  by value added. The honest framing is therefore **"South Africa's
+  largest industry"**, not "the world's largest."
+
+**Why it matters for Sakhi'ksasa.** Finance, real estate and business
+services is dense with SMEs — estate agencies, brokerages, accounting &
+tax practices, consultancies, asset managers, small lenders — that
+already pay monthly for business software (Sage Pastel is the SA SME
+accounting default). They are exactly the buyer pool for a
+business-management or competitive-intelligence system priced in rands.
+The research below maps the software competitors Sakhi'ksasa would meet
+*inside that industry* — not the global CI category (Section 2) or the
+SA fintechs (Section 3).
+
+**Competitor table — software vendors serving SA's largest industry
+(finance / real estate / professional & business services).** All
+figures reported, unverified unless marked.
+
+| Company | What it does | Target | Key facts | Source URLs |
+|---|---|---|---|---|
+| **Sage (Sage Pastel, SA)** | Accounting, payroll, HR, CRM for SMEs; practice tools for accounting firms (Sage Practice Manager) | SA SMEs & accounting practices | £2.51bn rev (2025); Sage Pastel is the long-standing SA SME accounting/payroll leader (reported, unverified share); Sage Practice Manager used by SA practices for workflow & job costing | en.wikipedia.org/wiki/Sage_Group ; sage.com/en-za/ |
+| **Xero (SA office)** | Cloud accounting SaaS + accountant channel | SMEs + accountants | 3.5M+ subscribers (2023); rev NZ$2.753bn (2026); direct SA office + Yoco integration announced at SA Roadshow (May 2025) | en.wikipedia.org/wiki/Xero_(software) ; xero.com/en-za/ |
+| **QuickBooks / Intuit** | Cloud accounting | SMEs | **Absent in SA**: intuit.com/za and quickbooks.intuit.com/za return 404 / no locale; no SARS-compliant payroll/tax module; SA users only get global QBO | direct curl checks (404) |
+| **Zoho (Zoho One)** | 40+ integrated business apps (CRM, Books, Workplace, Projects) | SMEs | >1M paying orgs, 150M users (Feb 2026); available in SA via global/partners — no dedicated /za locale | en.wikipedia.org/wiki/Zoho_Corporation |
+| **Yoco** | "All-in-one commerce platform": POS, online payments, loyalty, capital, **business-management tools** (Apr 2025 "Next 2025" platform expansion) | SA independent SMEs | 250,000+ businesses; R55bn+ payments/yr; R5.3bn/mo (Dec 2025); Apr-2025 event bundled additional SME business tools beyond payments — direct overlap with Sakhi'ksasa's "systems for businesses" positioning | en.wikipedia.org/wiki/Yoco ; yoco.com/za/about/ |
+| **CaseWare Africa** (Adapt IT) | Audit, assurance & financial-reporting software for accounting practices | Practice firms, corporate finance, public sector | 25,000+ users; now under Adapt IT | casewareafrica.com |
+| **GreatSoft** | Cloud CRM & practice management for accountants (tax, payroll, secretarial) | Accountancy firms | SA-built; tax/payroll/secretarial modules; worked with 3 of the Big Four in Africa | greatsoft.co.za |
+| **PaySpace** (acquired by Deel, 2024) | Cloud payroll & HR | SME → enterprise | 20,000+ customers, 45+ countries; Deel ownership gives it global reach | payspace.com |
+| **CCH Central (Wolters Kluwer)** | Tax & accounting practice management | Accounting/tax firms | Widely used by SA practices (reported, unverified — site Cloudflare-blocked this session) | wolterskluwer.com/en-za/ |
+| **Sage Practice Manager** | Practice workflow / job costing for accounting firms | Accounting practices | Part of Sage Accountants' Suite (reported) | via sage.com/en-za/ |
+
+**Evidence that financial-services firms buy CI / market-intelligence.**
+AlphaSense (AI market-intel) lists "the world's largest banks, investment
+firms and consultancies" as customers (J.P. Morgan among them); the
+market-intelligence category is reported at ~US$84bn (TechCrunch,
+28 Sep 2023, https://techcrunch.com/2023/09/28/alphasense-an-ai-based-market-intel-firm-snaps-up-150m-at-a-2-5b-valuation/).
+This validates that finance/professional-services firms actively pay for
+intelligence tooling — the buyer behaviour Standpoint is built for.
+
+**Honest caveats.**
+1. **Global wording.** Don't claim "the world's largest industry." Say
+   "South Africa's largest industry." The SA figure is airtight; the world
+   figure is not.
+2. **Sector breadth cuts both ways.** "Finance, real estate and business
+   services" is a *bundled* Stats SA category; the pure finance/insurance
+   slice alone is smaller than the whole 25%. The most *addressable* SME
+   buyers are arguably the real-estate and professional-services firms
+   (estate agencies, consultancies, accounting practices) rather than
+   banks and insurers (fewer, larger, harder to sell to).
+3. **Crowded incumbent field.** Sage Pastel + Xero already dominate SA SME
+   accounting; Yoco is bundling business tools into payments;
+   practice-management niches are held by CaseWare, GreatSoft, PaySpace,
+   CCH. Standpoint's "Standing Index" (competitive-intelligence) angle is
+   more differentiated than generic business-management — that is the
+   sharper pitch into this industry.
 
 ---
 
