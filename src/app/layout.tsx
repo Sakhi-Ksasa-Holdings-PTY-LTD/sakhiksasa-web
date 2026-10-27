@@ -1,32 +1,62 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Fraunces } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  weight: "variable",
+  axes: ["opsz"],
+});
+
+const SITE_URL = "https://sakhiksasa-web.onrender.com";
+const OG_IMAGE = "/standpoint-assets/images/standpoint_01_hero_og_1200x630.png";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sakhi'ksasa Holdings (Pty) Ltd — Systems Built to Give Businesses the Upper Hand",
+    default: "Sakhi'ksasa Holdings (Pty) Ltd — We don't wait for validation. We make the first move.",
     template: "%s · Sakhi'ksasa Holdings",
   },
   description:
-    "Sakhi'ksasa Holdings is a South African holding company building competitive-intelligence and business systems. Home of Standpoint.",
-  keywords: ["Sakhi'ksasa Holdings", "Standpoint", "competitive intelligence", "South Africa", "Vryheid", "KZN"],
+    "Sakhi'ksasa Holdings is a self-funded, privately-owned holding company that builds, owns, and operates businesses for the long term. Home of Vantage and Standpoint.",
+  keywords: [
+    "Sakhi'ksasa Holdings",
+    "holding company",
+    "South Africa",
+    "Vantage",
+    "Standpoint",
+    "competitive intelligence",
+  ],
   authors: [{ name: "Sakhi'ksasa Holdings (Pty) Ltd" }],
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png", sizes: "512x512" }],
+    apple: [{ url: "/favicon.png", sizes: "512x512" }],
+    shortcut: ["/favicon.png"],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
-    title: "Sakhi'ksasa Holdings — Systems Built to Give Businesses the Upper Hand",
-    description: "Home of Standpoint — competitive intelligence for South African SMEs.",
+    title: "Sakhi'ksasa Holdings (Pty) Ltd",
+    description:
+      "We don't wait for validation. We make the first move. A self-funded holding company building enduring businesses. Home of Vantage and Standpoint.",
     siteName: "Sakhi'ksasa Holdings",
     type: "website",
-    images: [{ url: "/standpoint-assets/images/standpoint_01_hero_og_1200x630.png", width: 1200, height: 630, alt: "Standpoint — Know where you stand. Fix where you lag." }],
+    url: SITE_URL,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Standpoint — Know where you stand. Fix where you lag." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sakhi'ksasa Holdings",
-    description: "Home of Standpoint — competitive intelligence for South African SMEs.",
-    images: ["/standpoint-assets/images/standpoint_01_hero_og_1200x630.png"],
+    description: "We build enduring businesses that outlast their founders. Home of Vantage and Standpoint.",
+    images: [OG_IMAGE],
   },
   robots: { index: true, follow: true },
 };
@@ -42,15 +72,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Sakhi'ksasa Holdings (Pty) Ltd",
-              description: "South African holding company building competitive-intelligence and business systems.",
-              foundingLocation: "Vryheid, KwaZulu-Natal, South Africa",
-              areaServed: "South Africa",
-              founder: { "@type": "Person", name: "Sanele Zwane" },
+              description:
+                "A self-funded, privately-owned holding company that builds, owns, and operates businesses for the long term.",
+              foundingLocation: "South Africa",
+              areaServed: "Global",
+              founder: { "@type": "Person", name: "Sanele T. Zwane" },
             }),
           }}
         />
       </head>
-      <body className="flex min-h-screen flex-col">
+      <body>
         {children}
       </body>
     </html>
