@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nav, Footer, CookieBanner, Reveal, GlassOrbs, DivisionMark } from '@/components/chrome';
+import { Nav, Footer, CookieBanner, Reveal, GlassOrbs, DivisionMark, ContactModal } from '@/components/chrome';
 import { BRAND } from '@/config/brand';
 
 /* ============================================================
@@ -22,9 +22,6 @@ export const metadata: Metadata = {
 const ASSETS = '/standpoint-assets';
 
 export default function StandpointPage() {
-  const demoHref = sp.demoUrl
-    ? sp.demoUrl
-    : `mailto:${BRAND.email}?subject=${encodeURIComponent(sp.demoEmailSubject)}`;
   const demoLabel = sp.demoUrl ? 'See the live demo' : 'Request a demo';
 
   return (
@@ -45,13 +42,45 @@ export default function StandpointPage() {
             <p className="h-hero-motto-line">{sp.tagline}</p>
             <p className="h-hero-sub" style={{ maxWidth: '58ch' }}>{sp.description}</p>
             <div className="h-hero-cta">
-              <a href={demoHref} target={sp.demoUrl ? '_blank' : undefined} rel={sp.demoUrl ? 'noopener noreferrer' : undefined} className="h-btn h-btn-accent h-btn-lg">
-                {demoLabel}
-              </a>
+              {sp.demoUrl ? (
+                <a href={sp.demoUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-accent h-btn-lg">
+                  {demoLabel}
+                </a>
+              ) : (
+                <button data-contact-open="Standpoint — sales" className="h-btn h-btn-accent h-btn-lg">
+                  {demoLabel}
+                </button>
+              )}
               <a href={sp.appUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-ghost-light h-btn-lg">
                 Launch the app
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* ---------- WATCH: INTRO VIDEO ---------- */}
+        <section className="h-section h-product" aria-label="Introducing Standpoint — video" style={{ paddingTop: 'var(--h-space-10)' }}>
+          <div className="h-container">
+            <Reveal>
+              <div className="h-eyebrow">Watch · 14 seconds</div>
+              <h2 className="h-section-title">Introducing Standpoint.</h2>
+            </Reveal>
+            <Reveal>
+              <div className="h-video-frame h-video-frame-wide">
+                <video
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster={`${ASSETS}/video/standpoint_intro_poster.jpg`}
+                  className="h-video"
+                >
+                  <source src={`${ASSETS}/video/standpoint_intro_16x9.mp4`} type="video/mp4" />
+                  <track kind="captions" src={`${ASSETS}/video/standpoint_intro_captions.vtt`} srcLang="en" label="English" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -89,100 +118,107 @@ export default function StandpointPage() {
                 </Reveal>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* ---------- SEE IT (asset gallery + video — fixes the display bug) ---------- */}
-        <section className="h-section h-about" aria-label="See Standpoint">
-          <div className="h-container">
+            {/* Watch: how it works — the 22-second walkthrough */}
             <Reveal>
-              <div className="h-eyebrow">See it</div>
-              <h2 className="h-section-title">The index, the signals, the briefings — in one view.</h2>
-            </Reveal>
-
-            <Reveal>
-              <div className="h-video-frame">
+              <div className="h-eyebrow" style={{ marginTop: 'var(--h-space-10)' }}>Watch · 22 seconds</div>
+              <h2 className="h-section-title">How Standpoint works.</h2>
+              <div className="h-video-frame h-video-frame-wide" style={{ marginTop: 'var(--h-space-5)' }}>
                 <video
                   controls
                   muted
                   playsInline
                   preload="metadata"
-                  poster={`${ASSETS}/video/standpoint_video_poster.jpg`}
+                  poster={`${ASSETS}/video/standpoint_how_it_works_poster.jpg`}
                   className="h-video"
                 >
-                  <source src={`${ASSETS}/video/standpoint_video_9x16_1080x1920.mp4`} type="video/mp4" />
-                  <track kind="captions" src={`${ASSETS}/video/standpoint_video_captions.vtt`} srcLang="en" label="English" default />
+                  <source src={`${ASSETS}/video/standpoint_how_it_works_16x9.mp4`} type="video/mp4" />
+                  <track kind="captions" src={`${ASSETS}/video/standpoint_how_captions.vtt`} srcLang="en" label="English" />
                   Your browser does not support the video tag.
                 </video>
               </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ---------- INSIDE THE SYSTEM (real product screens) ---------- */}
+        <section className="h-section h-about" aria-label="Inside Standpoint">
+          <div className="h-container">
+            <Reveal>
+              <div className="h-eyebrow">Inside the system</div>
+              <h2 className="h-section-title">The dashboard, the signals, the briefings.</h2>
+              <p className="h-section-desc">
+                Every screen, one glance: your score, your gaps, and the month's next moves.
+                <em> (Interface shown with sample data.)</em>
+              </p>
             </Reveal>
 
             <div className="h-gallery">
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/standpoint_01_hero_16x9_1920x1080.png`}
-                    alt="Standpoint Standing Index gauge on a dark CRT-style screen — Know where you stand. Fix where you lag."
+                    src={`${ASSETS}/images/ui_01_dashboard_1920x1080.png`}
+                    alt="Standpoint dashboard: the Standing Index gauge at 68, a category benchmark ranking you against three competitors, blind-spot flags and the monthly briefing card."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>The Standing Index — one 0–100 score from five signals.</figcaption>
+                  <figcaption>The dashboard — your Standing Index, benchmark and flags in one view. <em>(Sample data)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/standpoint_02_convergence_16x9_1920x1080.png`}
-                    alt="Five competitive signals — SEO, social, ad spend, reviews, pricing — converging into one Standing Index score."
+                    src={`${ASSETS}/images/ui_02_signals_1920x1080.png`}
+                    alt="Signal breakdown table showing SEO, social, ad spend, reviews and pricing scores, with your position versus the category leader and trend arrows."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>Five signals converge into one score.</figcaption>
+                  <figcaption>The five signals behind your score — leads green, lags red. <em>(Sample data)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/standpoint_03_blindspots_16x9_1920x1080.png`}
-                    alt="Blind spots where you trail the category leader by 25+ points, flagged in plain English. Illustrative sample data."
+                    src={`${ASSETS}/images/ui_03_blindspots_1920x1080.png`}
+                    alt="Blind spots screen: a 31-point ad-spend gap and a 14-point social gap, each with a plain-English action to take."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>Blind spots, flagged in plain English. <em>(Sample data)</em></figcaption>
+                  <figcaption>Blind spots — each gap comes with what to do about it. <em>(Sample data)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/standpoint_04_briefing_16x9_1920x1080.png`}
-                    alt="A clean briefing-document card with clear next moves for the month. Illustrative sample data."
+                    src={`${ASSETS}/images/ui_04_briefing_1920x1080.png`}
+                    alt="The monthly briefing document: what moved, what it means, and the next moves worth making."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>Clear next moves, in a written briefing. <em>(Sample data)</em></figcaption>
+                  <figcaption>The monthly briefing — what moved, what it means, next moves. <em>(Sample data)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/standpoint_05_brandclose_16x9_1920x1080.png`}
-                    alt="Sakhi'ksasa x Standpoint brand lockup — We make the first move. Start free."
+                    src={`${ASSETS}/images/ui_05_competitors_1920x1080.png`}
+                    alt="Competitor set comparison: you and three competitors scored across all five signals, side by side."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>Sakhi&rsquo;ksasa x Standpoint — we make the first move.</figcaption>
+                  <figcaption>You vs the competitors that matter — every signal, side by side. <em>(Sample data)</em></figcaption>
                 </figure>
               </Reveal>
             </div>
           </div>
         </section>
 
-        {/* ---------- PRICING (excl. VAT) ---------- */}
+        {/* ---------- PRICING (ZAR final — company not VAT-registered) ---------- */}
         <section className="h-section h-product" aria-label="Pricing">
           <div className="h-container">
             <Reveal>
@@ -210,9 +246,9 @@ export default function StandpointPage() {
                   {`Founding clients · ${sp.foundingPilot.slotsRemaining} of ${sp.foundingPilot.slots} slot${Number(sp.foundingPilot.slots) === 1 ? '' : 's'} open`}
                 </div>
                 <p className="h-founding-text">{sp.foundingPilot.text}</p>
-                <a href={`mailto:${BRAND.email}?subject=${encodeURIComponent('Founding client — Standpoint')}`} className="h-btn h-btn-primary h-btn-lg">
+                <button data-contact-open="Standpoint — sales" className="h-btn h-btn-primary h-btn-lg">
                   Claim a founding slot
-                </a>
+                </button>
               </div>
             </Reveal>
           </div>
@@ -226,9 +262,15 @@ export default function StandpointPage() {
                 Know where you stand. <span className="accent">Fix where you lag.</span>
               </h2>
               <div style={{ display: 'flex', gap: 'var(--h-space-2)', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <a href={demoHref} target={sp.demoUrl ? '_blank' : undefined} rel={sp.demoUrl ? 'noopener noreferrer' : undefined} className="h-btn h-btn-accent h-btn-lg">
-                  {demoLabel}
-                </a>
+                {sp.demoUrl ? (
+                  <a href={sp.demoUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-accent h-btn-lg">
+                    {demoLabel}
+                  </a>
+                ) : (
+                  <button data-contact-open="Standpoint — sales" className="h-btn h-btn-accent h-btn-lg">
+                    {demoLabel}
+                  </button>
+                )}
                 <a href={sp.appUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-ghost-light h-btn-lg">
                   Launch the app
                 </a>
@@ -239,6 +281,7 @@ export default function StandpointPage() {
       </main>
       <Footer />
       <CookieBanner />
+      <ContactModal />
     </div>
   );
 }

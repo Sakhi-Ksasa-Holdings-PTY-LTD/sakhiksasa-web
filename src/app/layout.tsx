@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 });
 
 const SITE_URL = "https://sakhiksasa-web.onrender.com";
-const OG_IMAGE = "/standpoint-assets/images/standpoint_01_hero_og_1200x630.png";
+const OG_IMAGE = "/standpoint-assets/images/standpoint_og_1200x630.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

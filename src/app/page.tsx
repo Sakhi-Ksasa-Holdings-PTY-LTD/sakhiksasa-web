@@ -1,4 +1,4 @@
-import { Nav, Footer, CookieBanner, Reveal, IconArrowRight, GlassOrbs, DivisionMark } from '@/components/chrome';
+import { Nav, Footer, CookieBanner, Reveal, IconArrowRight, GlassOrbs, DivisionMark, ContactModal } from '@/components/chrome';
 import { BRAND, visibleDivisions } from '@/config/brand';
 
 /* ============================================================
@@ -145,6 +145,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <CookieBanner />
+      <ContactModal />
     </div>
   );
 }

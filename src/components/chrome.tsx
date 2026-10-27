@@ -91,6 +91,146 @@ export function DivisionMark({ size = 'md', className = '' }: { size?: 'md' | 'l
   );
 }
 
+/* ----------------------------- Contact modal -----------------------------
+   The intake for the SLA system: enquiries captured here are auto-
+   acknowledged by email, logged with an SLA due-date, and surfaced in
+   the daily review log at /admin/log.
+   Opening: any element with [data-contact-open="<topic>"] anywhere on the
+   page — delegation keeps server components able to trigger it. */
+const CONTACT_TOPICS = ['General enquiry', 'Standpoint — sales', 'Standpoint — support', 'Press / Media'] as const;
+
+export function ContactModal() {
+  const [open, setOpen] = useState(false);
+  const [topic, setTopic] = useState<string>('General enquiry');
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [error, setError] = useState('');
+  const [ref, setRef] = useState('');
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const trigger = (e.target as HTMLElement | null)?.closest?.('[data-contact-open]');
+      if (!trigger) return;
+      e.preventDefault();
+      const t = trigger.getAttribute('data-contact-open') || 'General enquiry';
+      setTopic(CONTACT_TOPICS.includes(t as (typeof CONTACT_TOPICS)[number]) ? t : 'General enquiry');
+      setState('idle');
+      setError('');
+      setOpen(true);
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('click', onClick);
+    document.addEventListener('keydown', onKey);
+    return () => { document.removeEventListener('click', onClick); document.removeEventListener('keydown', onKey); };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setState('sending');
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name: String(data.get('name') || ''),
+          email: String(data.get('email') || ''),
+          company: String(data.get('company') || ''),
+          topic: String(data.get('topic') || 'General enquiry'),
+          message: String(data.get('message') || ''),
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.ok) {
+        setError(json.error || 'Something went wrong. Please email us directly.');
+        setState('error');
+        return;
+      }
+      setRef(json.ref || '');
+      setState('sent');
+      form.reset();
+    } catch {
+      setError('Network error. Please email us directly.');
+      setState('error');
+    }
+  };
+
+  const inputStyle = 'h-cf-input';
+
+  return (
+    <div className="h-modal" data-open={open} onClick={() => setOpen(false)} aria-hidden={!open}>
+      <div className="h-modal-panel" onClick={(ev) => ev.stopPropagation()} role="dialog" aria-modal="true" aria-label="Contact Sakhi'ksasa Holdings">
+        <button className="h-modal-close" onClick={() => setOpen(false)} aria-label="Close contact form">
+          <IconClose />
+        </button>
+
+        {state === 'sent' ? (
+          <div className="h-cf-done">
+            <div className="h-cf-done-badge">Received</div>
+            <h3 className="h-cf-title">Your enquiry is with us.</h3>
+            <p className="h-cf-text">
+              A confirmation is on its way to your inbox
+              {ref ? <> — your reference is <strong>{ref}</strong></> : null}.
+              {' '}We reply within one business day.
+            </p>
+            <button className="h-btn h-btn-primary" onClick={() => setOpen(false)}>Done</button>
+          </div>
+        ) : (
+          <>
+            <div className="h-modal-eyebrow">Contact</div>
+            <h3 className="h-cf-title">Tell us what you need.</h3>
+            <p className="h-cf-sub">
+              Straight to the company inbox. Auto-confirmed, tracked, answered within one business day.
+            </p>
+            <form onSubmit={submit} className="h-cf-form">
+              <div className="h-cf-row">
+                <label className="h-cf-label">
+                  Name *
+                  <input name="name" required maxLength={120} className={inputStyle} placeholder="Your full name" />
+                </label>
+                <label className="h-cf-label">
+                  Email *
+                  <input name="email" type="email" required maxLength={160} className={inputStyle} placeholder="you@company.co.za" />
+                </label>
+              </div>
+              <div className="h-cf-row">
+                <label className="h-cf-label">
+                  Company
+                  <input name="company" maxLength={160} className={inputStyle} placeholder="Optional" />
+                </label>
+                <label className="h-cf-label">
+                  Topic
+                  <select name="topic" value={topic} onChange={(e) => setTopic(e.target.value)} className={inputStyle}>
+                    {CONTACT_TOPICS.map((t) => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                </label>
+              </div>
+              <label className="h-cf-label">
+                Message *
+                <textarea name="message" required minLength={10} maxLength={4000} rows={5} className={inputStyle} placeholder="What do you want to know or do?" />
+              </label>
+              {state === 'error' && <p className="h-cf-error" role="alert">{error}</p>}
+              <div className="h-cf-actions">
+                <button type="submit" className="h-btn h-btn-accent" disabled={state === 'sending'}>
+                  {state === 'sending' ? 'Sending…' : 'Send enquiry'}
+                  <IconArrowRight />
+                </button>
+                <a href={`mailto:${BRAND.email}`} className="h-cf-mailto">Prefer your own email client? {BRAND.email}</a>
+              </div>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ----------------------------- Brand mark ----------------------------- */
 export function BrandMark() {
   return (
@@ -135,9 +275,9 @@ export function Nav() {
             ))}
           </nav>
           <div className="h-nav-cta">
-            <a href={`mailto:${BRAND.email}`} className="h-btn h-btn-accent">
+            <button data-contact-open="General enquiry" className="h-btn h-btn-accent">
               Contact <IconArrowRight />
-            </a>
+            </button>
           </div>
           <button className="h-menu-btn" onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open}>
             <IconMenu />
@@ -158,14 +298,14 @@ export function Nav() {
               <a key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</a>
             ))}
           </nav>
-          <a
-            href={`mailto:${BRAND.email}`}
+          <button
+            data-contact-open="General enquiry"
             className="h-btn h-btn-accent h-btn-lg"
             onClick={() => setOpen(false)}
             style={{ marginTop: 'auto' }}
           >
-            Contact by email <IconArrowRight />
-          </a>
+            Contact <IconArrowRight />
+          </button>
         </div>
       </div>
     </>

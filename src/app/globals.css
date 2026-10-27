@@ -1838,6 +1838,17 @@ a { color: inherit; text-decoration: none; }
 }
 .h-video { border-radius: calc(var(--h-radius) - 4px); }
 
+/* 16:9 product videos — wide glass stage */
+.h-video-frame-wide { justify-content: center; }
+.h-video-frame-wide .h-video {
+  max-width: 940px;
+  max-height: none;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 /* Cookie banner — floating glass */
 .h-cookie {
   background: var(--h-glass-strong);
@@ -1969,3 +1980,329 @@ a { color: inherit; text-decoration: none; }
   .h-orb, .h-division-mark-lg { animation: none !important; }
   .h-orb { filter: blur(80px); }
 }
+
+/* ============================================================
+   FIX: values cards on light background — the dark-section
+   text colours (.h-value-title #fff, .h-value-desc cream) bled
+   into the light restructure cards and went invisible.
+   Scope overrides to .h-value-light (0-2-0 beats 0-1-0).
+============================================================ */
+.holdings .h-value-light .h-value-num { color: var(--h-primary); }
+.holdings .h-value-light .h-value-title { color: var(--h-ink); }
+.holdings .h-value-light .h-value-desc { color: var(--h-ink-soft); }
+
+/* ============================================================
+   GLASS v2 — Don: "I don't see the style, make it visual enough."
+   Punch up every glass cue: bigger, brighter orbs; deeper tint;
+   visible edges, stronger sheen, clearer blur.
+============================================================ */
+
+/* Bigger, brighter ambient light */
+.h-orb { filter: blur(60px); }
+.h-orb-blue {
+  width: 56vw; height: 56vw;
+  min-width: 520px; min-height: 520px;
+  top: -14%; left: -12%;
+  background: radial-gradient(circle at 32% 32%, rgba(43, 47, 217, 0.60), rgba(43, 47, 217, 0.18) 55%, transparent 70%);
+  animation-duration: 22s;
+}
+.h-orb-orange {
+  width: 46vw; height: 46vw;
+  min-width: 440px; min-height: 440px;
+  top: 34%; right: -14%;
+  background: radial-gradient(circle at 40% 36%, rgba(232, 89, 12, 0.52), rgba(232, 89, 12, 0.16) 55%, transparent 70%);
+  animation-duration: 29s;
+}
+.h-orb-far {
+  width: 40vw; height: 40vw;
+  min-width: 380px; min-height: 380px;
+  bottom: -16%; left: 22%;
+  background: radial-gradient(circle at 50% 45%, rgba(43, 47, 217, 0.28), rgba(232, 89, 12, 0.18) 50%, transparent 70%);
+  animation-duration: 36s;
+}
+
+/* Glass you can SEE: milky tint, bright edge, real depth */
+.h-house-card,
+.h-value-light,
+.h-pillar,
+.h-tier,
+.h-gallery-item {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.42) 55%, rgba(255, 255, 255, 0.55));
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  outline: 1px solid rgba(43, 47, 217, 0.10);
+  outline-offset: -1px;
+  box-shadow:
+    0 24px 50px -22px rgba(26, 26, 46, 0.34),
+    0 2px 8px -2px rgba(26, 26, 46, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(43, 47, 217, 0.06);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  backdrop-filter: blur(24px) saturate(170%);
+}
+/* Stronger diagonal sheen + bottom light catch */
+.h-house-card::before,
+.h-value-light::before,
+.h-pillar::before,
+.h-tier::before,
+.h-gallery-item::before {
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.12) 34%, transparent 58%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.35) 0%, transparent 26%);
+}
+.h-house-card:hover {
+  border-color: rgba(43, 47, 217, 0.55);
+  outline-color: rgba(43, 47, 217, 0.22);
+  box-shadow:
+    0 34px 64px -22px rgba(43, 47, 217, 0.42),
+    0 2px 10px -2px rgba(43, 47, 217, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+.h-value-light:hover,
+.h-pillar:hover {
+  border-color: rgba(232, 89, 12, 0.5);
+  outline-color: rgba(232, 89, 12, 0.20);
+  box-shadow:
+    0 30px 60px -22px rgba(232, 89, 12, 0.38),
+    0 2px 10px -2px rgba(232, 89, 12, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Founding block — visible accent glass */
+.h-founding {
+  background: linear-gradient(118deg, rgba(253, 233, 214, 0.92), rgba(255, 255, 255, 0.62) 62%);
+  border: 1.5px solid rgba(232, 89, 12, 0.55);
+  outline: 1px solid rgba(232, 89, 12, 0.14);
+  outline-offset: -1px;
+  box-shadow:
+    0 30px 60px -24px rgba(232, 89, 12, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.h-founding::before {
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.7) 0%, transparent 48%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.4) 0%, transparent 24%);
+}
+
+/* Signal chips — milky glass pills */
+.h-signal-chip {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5));
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 26px -14px rgba(26, 26, 46, 0.35), inset 0 1px 0 #fff;
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+}
+
+/* Video bezel — brighter glass rim */
+.h-video-frame {
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow:
+    0 38px 70px -28px rgba(26, 26, 46, 0.6),
+    0 0 0 10px rgba(255, 255, 255, 0.22),
+    0 0 60px -18px rgba(43, 47, 217, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Cookie + drawer — readable frosted glass */
+.h-cookie {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 28px 56px -20px rgba(26, 26, 46, 0.45), inset 0 1px 0 #fff;
+}
+.h-drawer-panel {
+  background: rgba(243, 240, 234, 0.9);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  backdrop-filter: blur(28px) saturate(150%);
+}
+
+/* Header — glass you can feel when content scrolls under it */
+.h-header {
+  background: rgba(243, 240, 234, 0.62);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+}
+.h-header[data-scrolled="true"] {
+  background: rgba(243, 240, 234, 0.85);
+  border-bottom-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 30px -18px rgba(26, 26, 46, 0.25), inset 0 -1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Division mark tile — app-icon glass */
+.h-division-mark {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.72));
+  border: 1px solid #fff;
+  box-shadow:
+    0 20px 40px -16px rgba(43, 47, 217, 0.45),
+    0 0 0 4px rgba(255, 255, 255, 0.35),
+    inset 0 1px 0 #fff;
+}
+.h-division-mark-lg {
+  box-shadow:
+    0 30px 64px -20px rgba(43, 47, 217, 0.55),
+    0 0 0 8px rgba(255, 255, 255, 0.30),
+    0 0 80px -20px rgba(232, 89, 12, 0.35),
+    inset 0 1px 0 #fff;
+}
+
+/* Ghost button on dark hero — clearly glass */
+.h-btn-ghost-light {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 26px -14px rgba(0, 0, 0, 0.5);
+}
+.h-btn-ghost-light:hover { background: rgba(255, 255, 255, 0.22); }
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .h-house-card, .h-value-light, .h-pillar, .h-tier, .h-gallery-item, .h-signal-chip {
+    background: #fff;
+  }
+}
+
+/* ============================================================
+   CONTACT MODAL — intake for the SLA system
+============================================================ */
+.h-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: var(--h-space-4);
+  background: rgba(26, 26, 46, 0.45);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s var(--h-ease-out);
+}
+.h-modal[data-open="true"] { opacity: 1; pointer-events: auto; }
+.h-modal-panel {
+  position: relative;
+  width: min(640px, 100%);
+  max-height: min(86vh, 780px);
+  overflow-y: auto;
+  border-radius: var(--h-radius-lg);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.97), rgba(243, 240, 234, 0.94));
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  backdrop-filter: blur(28px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 40px 90px -30px rgba(26, 26, 46, 0.55), inset 0 1px 0 #fff;
+  padding: var(--h-space-6);
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.32s var(--h-ease-out);
+}
+.h-modal[data-open="true"] .h-modal-panel { transform: translateY(0) scale(1); }
+.h-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--h-ink-soft);
+  border: 1px solid var(--h-border);
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s var(--h-ease);
+}
+.h-modal-close:hover { color: var(--h-ink); border-color: var(--h-primary); }
+.h-modal-eyebrow {
+  font-size: var(--h-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--h-accent);
+  margin-bottom: 8px;
+}
+.h-cf-title {
+  font-family: var(--h-font-display);
+  font-size: var(--h-text-3xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--h-ink);
+  margin-bottom: 8px;
+}
+.h-cf-sub { color: var(--h-muted); font-size: var(--h-text-sm); margin-bottom: var(--h-space-4); }
+.h-cf-form { display: flex; flex-direction: column; gap: var(--h-space-3); }
+.h-cf-row { display: grid; grid-template-columns: 1fr; gap: var(--h-space-3); }
+@media (min-width: 560px) { .h-cf-row { grid-template-columns: 1fr 1fr; } }
+.h-cf-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--h-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--h-ink-soft);
+}
+.h-cf-input {
+  font-size: var(--h-text-base);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--h-ink);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--h-border-strong);
+  background: rgba(255, 255, 255, 0.85);
+  transition: border-color 0.2s var(--h-ease), box-shadow 0.2s var(--h-ease);
+  width: 100%;
+}
+.h-cf-input:focus {
+  outline: none;
+  border-color: var(--h-primary);
+  box-shadow: 0 0 0 3px rgba(43, 47, 217, 0.15);
+}
+textarea.h-cf-input { resize: vertical; min-height: 110px; font-family: inherit; }
+.h-cf-error {
+  color: var(--h-accent-dark);
+  font-size: var(--h-text-sm);
+  background: var(--h-accent-soft);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.h-cf-actions { display: flex; align-items: center; gap: var(--h-space-3); flex-wrap: wrap; margin-top: 4px; }
+.h-cf-mailto { font-size: var(--h-text-xs); color: var(--h-muted); }
+.h-cf-mailto:hover { color: var(--h-primary); }
+.h-cf-done { text-align: center; padding: var(--h-space-4) 0; }
+.h-cf-done-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(43, 47, 217, 0.1);
+  color: var(--h-primary);
+  font-size: var(--h-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: var(--h-space-3);
+}
+.h-cf-done .h-cf-text { color: var(--h-ink-soft); line-height: 1.65; margin: 0 auto var(--h-space-4); max-width: 40ch; }
+.h-cf-done .h-btn { display: inline-flex; }
+
+/* ============================================================
+   FIX: `.holdings button` reset (0-1-1) outranked single-class
+   button variants (0-1-0) — CTA <button>s lost their fill.
+   Re-declare variants scoped under .holdings (0-2-0).
+============================================================ */
+.holdings .h-btn-primary { background: var(--h-primary); color: #fff; }
+.holdings .h-btn-primary:hover { background: var(--h-primary-dark); color: #fff; }
+.holdings .h-btn-accent { background: var(--h-accent); color: #fff; }
+.holdings .h-btn-accent:hover { background: var(--h-accent-dark); color: #fff; }
+.holdings .h-btn-ink { background: var(--h-ink); color: var(--h-surface); }
+.holdings .h-btn-ink:hover { background: #2a2a44; color: var(--h-surface); }
+.holdings .h-btn-outline { background: transparent; color: var(--h-ink); border-color: var(--h-border-strong); }
+.holdings .h-btn-outline:hover { border-color: var(--h-ink); color: var(--h-ink); background: var(--h-surface-alt); }
+.holdings .h-btn-ghost-light {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--h-surface);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 26px -14px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+.holdings .h-btn-ghost-light:hover { background: rgba(255, 255, 255, 0.22); border-color: rgba(255, 255, 255, 0.6); color: #fff; }
+.holdings .h-cookie .h-btn-outline { background: transparent; }
+.holdings .h-cookie .h-btn-primary { background: var(--h-primary); }
