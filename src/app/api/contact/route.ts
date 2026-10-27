@@ -4,15 +4,17 @@
  * The company's enquiry intake with SLA handling. Server-side only.
  *
  * Flow:
- *   1. Validate input (name, email, message required; topic enum)
- *   2. Assign a reference (SKH-XXXXXX) + SLA due date (next business day)
+ *   1. Validate input (name, email, message required; topic enum) + rate limit
+ *   2. Assign a reference (SKH-XXXXXX) + internal triage due date
  *   3. Persist to logs/contact-enquiries.jsonl — the daily review log
- *   4. Auto-reply to the enquirer via Brevo (acknowledgement + SLA promise)
+ *   4. Auto-reply to the enquirer via Brevo (acknowledgement only — no
+ *      response-time promises anywhere, per founder)
  *   5. Forward to the company inbox via Brevo
  *   6. Return 200 { ok, ref }
  *
- * SLA: every enquiry is answered within ONE BUSINESS DAY. The due date is
- * stored with the record; /admin/log (key-protected) surfaces overdue ones.
+ * No public response-time promise (founder instruction — "one business day"
+ * removed from all copy). An internal due date is still stored with each
+ * record so /admin/log (key-protected) can surface stale ones for review.
  *
  * Does NOT touch the Standpoint SaaS database or subscribe anyone to a list.
  */
@@ -53,13 +55,34 @@ function makeRef(): string {
   return `SKH-${t.slice(-4)}${r}`;
 }
 
-/** Next business day (Mon–Fri), South African time approximated via UTC+2. */
+/** Internal triage target (Mon–Fri), South African time approximated via UTC+2. */
 function nextBusinessDay(from: Date): string {
   const d = new Date(from.getTime() + 24 * 60 * 60 * 1000);
   while (d.getUTCDay() === 0 || d.getUTCDay() === 6) {
     d.setUTCDate(d.getUTCDate() + 1);
   }
   return d.toISOString();
+}
+
+/* ---- Lightweight in-memory rate limit: 5 enquiries per IP per hour.
+   Protects the Brevo send quota and the review log from abuse. Single-
+   instance Docker deployment — in-memory is sufficient here. ---- */
+const RATE_WINDOW_MS = 60 * 60 * 1000;
+const RATE_MAX = 5;
+const rateHits = new Map<string, number[]>();
+
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const list = (rateHits.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  list.push(now);
+  rateHits.set(ip, list);
+  // Opportunistic cleanup so the map cannot grow unbounded.
+  if (rateHits.size > 500) {
+    for (const [k, v] of rateHits) {
+      if (v.every((t) => now - t >= RATE_WINDOW_MS)) rateHits.delete(k);
+    }
+  }
+  return list.length > RATE_MAX;
 }
 
 async function appendToLog(record: Record<string, unknown>): Promise<void> {
@@ -109,7 +132,7 @@ async function sendBrevo(
       `<h3 style="color:#1a1a2e;">Message</h3>`,
       `<p style="white-space:pre-wrap;line-height:1.6;color:#1a1a2e;">${escapeHtml(payload.message)}</p>`,
       `<hr style="margin:24px 0 8px;border:none;border-top:1px solid #e0ddd5;">`,
-      `<p style="font-size:12px;color:#6b6b7e;">SLA: reply within one business day. Daily review log: ${COMPANY_INBOX_BASE_URL}/admin/log?key=…</p>`,
+      `<p style="font-size:12px;color:#6b6b7e;">Daily review log: ${COMPANY_INBOX_BASE_URL}/admin/log?key=…</p>`,
       `</div>`,
     ].filter(Boolean).join('\n');
     text = [
@@ -130,8 +153,7 @@ async function sendBrevo(
       `<div style="font-family:-apple-system,sans-serif;max-width:560px;color:#1a1a2e;">`,
       `<h2 style="color:#2b2fd9;margin:0 0 4px;">Thank you, ${escapeHtml(payload.name.split(' ')[0])}.</h2>`,
       `<p style="font-size:15px;line-height:1.6;">Your enquiry has been received and logged — reference <strong>${ref}</strong>.</p>`,
-      `<p style="font-size:15px;line-height:1.6;">We reply to every enquiry <strong>within one business day</strong> — by <strong>${dueHuman}</strong> at the latest.</p>`,
-      `<p style="font-size:15px;line-height:1.6;">If it's urgent in the meantime, simply reply to this email.</p>`,
+      `<p style="font-size:15px;line-height:1.6;">If it's urgent, simply reply to this email.</p>`,
       `<p style="font-size:13px;color:#6b6b7e;">Sakhi'ksasa Holdings (Pty) Ltd · We don't wait for validation. We make the first move.</p>`,
       `</div>`,
     ].join('\n');
@@ -139,8 +161,7 @@ async function sendBrevo(
       `Thank you, ${payload.name.split(' ')[0]}.`,
       ``,
       `Your enquiry has been received and logged — reference ${ref}.`,
-      `We reply within one business day — by ${dueHuman} at the latest.`,
-      `If it's urgent in the meantime, simply reply to this email.`,
+      `If it's urgent, simply reply to this email.`,
       ``,
       `Sakhi'ksasa Holdings (Pty) Ltd`,
     ].join('\n');
@@ -182,6 +203,15 @@ function escapeHtml(s: string): string {
 }
 
 export async function POST(req: Request) {
+  // Rate limit first — cheap reject before any parsing or persistence.
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip') || 'unknown';
+  if (rateLimited(ip)) {
+    return NextResponse.json(
+      { ok: false, error: 'Too many enquiries from this address right now. Please email us directly.' },
+      { status: 429 },
+    );
+  }
+
   let body: ContactPayload;
   try {
     body = (await req.json()) as ContactPayload;
@@ -217,12 +247,12 @@ export async function POST(req: Request) {
     ref,
     slaDue,
     slaState: 'open',
-    ip: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown',
+    ip,
     ua: req.headers.get('user-agent') || 'unknown',
     ...payload,
   });
 
-  // 2. Auto-reply to the enquirer (SLA promise). Failure doesn't fail the request.
+  // 2. Auto-reply to the enquirer (acknowledgement only). Failure doesn't fail the request.
   const auto = await sendBrevo('autoreply', payload, ref, slaDue);
   if (!auto.ok) {
     await appendToLog({ ts, ref, slaState: 'autoreply-failed', note: auto.error });

@@ -34,6 +34,9 @@ export const BRAND = {
   divisionLogo: "/favicon.png",
   instagram: "https://instagram.com/sakhi.holdings",
   instagramHandle: "@sakhi.holdings",
+  /** Official company X (Twitter) account — founder-approved. */
+  x: "https://x.com/SakhiHoldings",
+  xHandle: "@SakhiHoldings",
 
   /** Motto — verbatim, founder-approved. */
   motto: "We don't wait for validation. We make the first move.",
@@ -43,14 +46,14 @@ export const BRAND = {
   },
 
   positioning:
-    "Sakhi'ksasa Holdings is a self-funded, privately-owned holding company that builds, owns, and operates businesses for the long term.",
+    "Sakhi'ksasa Holdings is a self-funded, privately-owned holding company that builds, owns, and operates systems for the long term.",
 
   /* ---------- Company copy — verbatim, founder-approved ---------- */
   vision:
-    "To build enduring businesses that outlast their founders and compound value across generations.",
+    "To build enduring systems that outlast their founders and compound value across generations.",
 
   mission:
-    "Sakhi'ksasa Holdings builds and owns businesses for the long term. We launch products that solve real problems, run them to a high standard, and reinvest what they earn into the next.",
+    "Sakhi'ksasa Holdings builds and owns systems for the long term. We launch products that solve real problems, run them to a high standard, and reinvest what they earn into the next.",
 
   values: [
     { title: "Longevity over speed", desc: "We make decisions we can defend in ten years, not ten weeks." },
@@ -70,7 +73,7 @@ export const BRAND = {
       slug: "vantage",
       /** [CONFIRM] proposed one-sentence descriptor — Don to confirm/edit. */
       descriptor:
-        "Vantage builds competitive-intelligence software that shows a business exactly where it stands against its competitors.",
+        "Vantage builds competitive-intelligence software that shows a company exactly where it stands against its competitors.",
       status: "live" as const,
       visible: true,
     },
@@ -84,7 +87,7 @@ export const BRAND = {
     name: "Sanele T. Zwane",
     role: "Founder & Chief Executive",
     initials: "SZ",
-    bio: "Sanele T. Zwane founded Sakhi'ksasa Holdings with a conviction that enduring businesses are built by those who make the first move — not by those who wait for permission. As the sole owner, he leads the company's strategy, capital allocation, and product vision.",
+    bio: "Sanele T. Zwane founded Sakhi'ksasa Holdings with a conviction that enduring companies are built by those who make the first move — not by those who wait for permission. As the sole owner, he leads the company's strategy, capital allocation, and product vision.",
     quote: "Discipline is the only ceiling that matters.",
   },
 
@@ -94,7 +97,7 @@ export const BRAND = {
     division: "Vantage",
     tagline: "Know where you stand. Fix where you lag.",
     description:
-      "A competitive-intelligence platform that turns scattered competitor signals — SEO, social, ad spend, reviews, pricing — into a single 0–100 Standing Index. Built for businesses that want to know where they lead, where they lag, and what to do about it.",
+      "A competitive-intelligence platform that turns scattered competitor signals — SEO, social, ad spend, reviews, pricing — into a single 0–100 Standing Index. Built for companies that want to know where they lead, where they lag, and what to do about it.",
     appUrl: "https://standpoint-web.onrender.com",
     legalBase: "https://standpoint-web.onrender.com",
     pillars: [
@@ -135,9 +138,6 @@ export const BRAND = {
       slotsRemaining: 3,
       text: "The first 3 clients get Starter features at R500/mo for 6 months, then R1,000/mo. Setup waived, with free assisted setup.",
     },
-    /** Demo: read-only showcase not built yet → email CTA. Flip when live. */
-    demoUrl: "",
-    demoEmailSubject: "Demo request — Standpoint",
   },
 } as const;
 

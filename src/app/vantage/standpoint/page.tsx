@@ -5,11 +5,11 @@ import { BRAND } from '@/config/brand';
 /* ============================================================
    Standpoint — product page (inside Vantage).
    What it is · Standing Index (0–100) · monthly briefings ·
-   pricing (excl. VAT) · 3 Founding Client slots · demo CTA.
+   pricing (excl. VAT) · 3 Founding Client slots · app CTA.
    Depth lives ONLY here — the home page stays company-first.
 
-   Demo: read-only showcase demo not built yet → "Request a demo"
-   email button (mailto). Flip BRAND.standpoint.demoUrl when live.
+   No "Request a demo" anywhere (founder instruction): the app
+   itself is live, so CTAs point straight at it.
 ============================================================ */
 
 const sp = BRAND.standpoint;
@@ -22,8 +22,6 @@ export const metadata: Metadata = {
 const ASSETS = '/standpoint-assets';
 
 export default function StandpointPage() {
-  const demoLabel = sp.demoUrl ? 'See the live demo' : 'Request a demo';
-
   return (
     <div className="holdings">
       <GlassOrbs />
@@ -42,17 +40,11 @@ export default function StandpointPage() {
             <p className="h-hero-motto-line">{sp.tagline}</p>
             <p className="h-hero-sub" style={{ maxWidth: '58ch' }}>{sp.description}</p>
             <div className="h-hero-cta">
-              {sp.demoUrl ? (
-                <a href={sp.demoUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-accent h-btn-lg">
-                  {demoLabel}
-                </a>
-              ) : (
-                <button data-contact-open="Standpoint — sales" className="h-btn h-btn-accent h-btn-lg">
-                  {demoLabel}
-                </button>
-              )}
-              <a href={sp.appUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-ghost-light h-btn-lg">
+              <a href={sp.appUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-accent h-btn-lg">
                 Launch the app
+              </a>
+              <a href="#h-pricing" className="h-btn h-btn-ghost-light h-btn-lg">
+                See pricing
               </a>
             </div>
           </div>
@@ -69,7 +61,6 @@ export default function StandpointPage() {
               <div className="h-video-frame h-video-frame-wide">
                 <video
                   controls
-                  muted
                   playsInline
                   preload="metadata"
                   poster={`${ASSETS}/video/standpoint_intro_poster.jpg`}
@@ -126,7 +117,6 @@ export default function StandpointPage() {
               <div className="h-video-frame h-video-frame-wide" style={{ marginTop: 'var(--h-space-5)' }}>
                 <video
                   controls
-                  muted
                   playsInline
                   preload="metadata"
                   poster={`${ASSETS}/video/standpoint_how_it_works_poster.jpg`}
@@ -219,11 +209,11 @@ export default function StandpointPage() {
         </section>
 
         {/* ---------- PRICING (ZAR final — company not VAT-registered) ---------- */}
-        <section className="h-section h-product" aria-label="Pricing">
+        <section id="h-pricing" className="h-section h-product" aria-label="Pricing">
           <div className="h-container">
             <Reveal>
               <div className="h-eyebrow">Pricing</div>
-              <h2 className="h-section-title">Tiered for every stage of business.</h2>
+              <h2 className="h-section-title">Tiered for every stage of growth.</h2>
               <p className="h-section-desc">{sp.vatNote} Annual billing gets two months free.</p>
             </Reveal>
             <div className="h-tiers-grid">
@@ -262,17 +252,11 @@ export default function StandpointPage() {
                 Know where you stand. <span className="accent">Fix where you lag.</span>
               </h2>
               <div style={{ display: 'flex', gap: 'var(--h-space-2)', justifyContent: 'center', flexWrap: 'wrap' }}>
-                {sp.demoUrl ? (
-                  <a href={sp.demoUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-accent h-btn-lg">
-                    {demoLabel}
-                  </a>
-                ) : (
-                  <button data-contact-open="Standpoint — sales" className="h-btn h-btn-accent h-btn-lg">
-                    {demoLabel}
-                  </button>
-                )}
-                <a href={sp.appUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-ghost-light h-btn-lg">
+                <a href={sp.appUrl} target="_blank" rel="noopener noreferrer" className="h-btn h-btn-accent h-btn-lg">
                   Launch the app
+                </a>
+                <a href="#h-pricing" className="h-btn h-btn-ghost-light h-btn-lg">
+                  See pricing
                 </a>
               </div>
             </Reveal>

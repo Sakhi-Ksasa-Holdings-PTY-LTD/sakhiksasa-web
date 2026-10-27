@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s · Sakhi'ksasa Holdings",
   },
   description:
-    "Sakhi'ksasa Holdings is a self-funded, privately-owned holding company that builds, owns, and operates businesses for the long term. Home of Vantage and Standpoint.",
+    "Sakhi'ksasa Holdings is a self-funded, privately-owned holding company that builds, owns, and operates systems for the long term. Home of Vantage and Standpoint.",
   keywords: [
     "Sakhi'ksasa Holdings",
     "holding company",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sakhi'ksasa Holdings (Pty) Ltd",
     description:
-      "We don't wait for validation. We make the first move. A self-funded holding company building enduring businesses. Home of Vantage and Standpoint.",
+      "We don't wait for validation. We make the first move. A self-funded holding company building enduring systems. Home of Vantage and Standpoint.",
     siteName: "Sakhi'ksasa Holdings",
     type: "website",
     url: SITE_URL,
@@ -55,8 +55,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sakhi'ksasa Holdings",
-    description: "We build enduring businesses that outlast their founders. Home of Vantage and Standpoint.",
+    description: "We build enduring systems that outlast their founders. Home of Vantage and Standpoint.",
     images: [OG_IMAGE],
+    site: "@SakhiHoldings",
+    creator: "@SakhiHoldings",
   },
   robots: { index: true, follow: true },
 };
@@ -73,10 +75,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "Organization",
               name: "Sakhi'ksasa Holdings (Pty) Ltd",
               description:
-                "A self-funded, privately-owned holding company that builds, owns, and operates businesses for the long term.",
+                "A self-funded, privately-owned holding company that builds, owns, and operates systems for the long term.",
               foundingLocation: "South Africa",
               areaServed: "Global",
               founder: { "@type": "Person", name: "Sanele T. Zwane" },
+              sameAs: ["https://x.com/SakhiHoldings", "https://instagram.com/sakhi.holdings"],
             }),
           }}
         />

@@ -51,7 +51,7 @@ export default function HomePage() {
             <Reveal>
               <div className="h-eyebrow">Our Vision</div>
               <p className="h-vision-statement">
-                To build enduring businesses that <span className="accent">outlast their founders</span> and compound value across generations.
+                To build enduring systems that <span className="accent">outlast their founders</span> and compound value across generations.
               </p>
             </Reveal>
             <div className="h-vision-mission">

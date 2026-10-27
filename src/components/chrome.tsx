@@ -51,6 +51,13 @@ export function IconInstagram() {
     </svg>
   );
 }
+export function IconX() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z" />
+    </svg>
+  );
+}
 export function IconArrowRight() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -177,7 +184,6 @@ export function ContactModal() {
             <p className="h-cf-text">
               A confirmation is on its way to your inbox
               {ref ? <> — your reference is <strong>{ref}</strong></> : null}.
-              {' '}We reply within one business day.
             </p>
             <button className="h-btn h-btn-primary" onClick={() => setOpen(false)}>Done</button>
           </div>
@@ -186,7 +192,7 @@ export function ContactModal() {
             <div className="h-modal-eyebrow">Contact</div>
             <h3 className="h-cf-title">Tell us what you need.</h3>
             <p className="h-cf-sub">
-              Straight to the company inbox. Auto-confirmed, tracked, answered within one business day.
+              Straight to the company inbox. Auto-confirmed, tracked, and reviewed daily.
             </p>
             <form onSubmit={submit} className="h-cf-form">
               <div className="h-cf-row">
@@ -358,6 +364,9 @@ export function Footer() {
             <BrandMark />
             <p className="h-footer-tag">{BRAND.positioning}</p>
             <div className="h-footer-social">
+              <a href={BRAND.x} target="_blank" rel="noopener noreferrer" aria-label={`X (Twitter) — ${BRAND.xHandle}`}>
+                <IconX />
+              </a>
               <a href={BRAND.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <IconInstagram />
               </a>

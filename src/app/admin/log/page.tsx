@@ -10,8 +10,8 @@ import path from 'path';
  * No key configured, or wrong key → nothing is shown (no data leak).
  * robots.txt disallows /admin. Not in the sitemap.
  *
- * Shows: every enquiry (newest first), its reference, the SLA due date
- * (next business day), and whether it is OVERDUE — plus today's count.
+ * Shows: every enquiry (newest first), its reference, the internal due
+ * date, and whether it is PAST DUE — plus today's count.
  */
 
 export const dynamic = 'force-dynamic';
@@ -99,7 +99,7 @@ export default async function AdminLogPage({
     <main style={{ fontFamily: 'var(--font-inter, sans-serif)', padding: 40, maxWidth: 1080, margin: '0 auto', color: '#1a1a2e' }}>
       <h1 style={{ fontSize: 24, marginBottom: 4 }}>Daily enquiry review</h1>
       <p style={{ color: '#6b6b7e', marginBottom: 20 }}>
-        {todayCount} received today · {overdue.length} overdue · SLA: reply within one business day
+        {todayCount} received today · {overdue.length} past due
       </p>
 
       {overdue.length > 0 && (
