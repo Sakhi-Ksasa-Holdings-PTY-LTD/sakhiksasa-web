@@ -28,10 +28,11 @@ export const BRAND = {
   location: "South Africa",
   email: "sakhiksasaholdingsptyltd@gmail.com",
   /**
-   * Division mark — the logo used by the Standpoint system. This is THE mark
-   * carried by Vantage and by every system under the Vantage division.
+   * Division mark — the official orbit mark from the Oct 2026 brand sheet.
+   * Core = holding company, 4 solid nodes = divisions, dashed node = what comes next.
+   * This is THE mark carried by Vantage and by every system under the Vantage division.
    */
-  divisionLogo: "/favicon.png",
+  divisionLogo: "/logo-orbit-mark.png",
   instagram: "https://instagram.com/sakhi.holdings",
   instagramHandle: "@sakhi.holdings",
   /** Official company X (Twitter) account — founder-approved. */

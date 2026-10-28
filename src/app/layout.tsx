@@ -1,27 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, Space_Grotesk } from "next/font/google";
+import { Sora } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+// Sora — the official brand font (per Oct 2026 brand sheet).
+// Used for wordmark, holdings line, documents, and interface — replaces
+// the former Fraunces + Inter + Space Grotesk trio.
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  weight: "variable",
-  axes: ["opsz"],
-});
-
-// Space Grotesk — geometric, characterful, for the small eyebrow/meta phrases
-// that need to feel alive and distinct from the body and display fonts.
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-grotesk",
+  variable: "--font-sora",
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
@@ -74,7 +60,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={sora.variable}>
       <head>
         <script
           type="application/ld+json"
