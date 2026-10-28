@@ -3,9 +3,10 @@
    Pure CSS (no Tailwind). All rules scoped under `.holdings`
    so they never collide with vendor styles.
 
-   Palette extracted verbatim from official logo:
-     #2b2fd9 blue, #e8590c orange, #f3f0ea cream, #1a1a2e ink
-   Fonts: Fraunces (display serif) + Inter (body)
+   Brand palette (Oct 2026 brand sheet):
+     #2B2FD9 Indigo, #E8590C Orange, #F3F1EA Off-white, #14143A Ink,
+     #7B7FFF Sky (on dark), #FF7A2E Flame (on dark)
+   Font: Sora (brand sheet prescribes Sora throughout)
 ============================================================ */
 
 /* Base reset */
@@ -14,9 +15,9 @@
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
-  background-color: #f3f0ea;
-  color: #1a1a2e;
-  font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, sans-serif);
+  background-color: #F3F1EA;
+  color: #14143A;
+  font-family: var(--font-sora, -apple-system, BlinkMacSystemFont, sans-serif);
   font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
