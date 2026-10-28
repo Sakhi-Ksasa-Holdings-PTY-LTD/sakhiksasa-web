@@ -153,7 +153,7 @@ async function sendBrevo(
       `<div style="font-family:-apple-system,sans-serif;max-width:560px;color:#1a1a2e;">`,
       `<h2 style="color:#2b2fd9;margin:0 0 4px;">Thank you, ${escapeHtml(payload.name.split(' ')[0])}.</h2>`,
       `<p style="font-size:15px;line-height:1.6;">Your enquiry has been received and logged — reference <strong>${ref}</strong>.</p>`,
-      `<p style="font-size:15px;line-height:1.6;">If it's urgent, simply reply to this email.</p>`,
+      `<p style="font-size:15px;line-height:1.6;">We read every enquiry. For anything urgent, simply reply to this email.</p>`,
       `<p style="font-size:13px;color:#6b6b7e;">Sakhi'ksasa Holdings (Pty) Ltd · We don't wait for validation. We make the first move.</p>`,
       `</div>`,
     ].join('\n');
@@ -161,7 +161,7 @@ async function sendBrevo(
       `Thank you, ${payload.name.split(' ')[0]}.`,
       ``,
       `Your enquiry has been received and logged — reference ${ref}.`,
-      `If it's urgent, simply reply to this email.`,
+      `We read every enquiry. For anything urgent, simply reply to this email.`,
       ``,
       `Sakhi'ksasa Holdings (Pty) Ltd`,
     ].join('\n');

@@ -45,6 +45,15 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ---------- AUDIENCE LINE — who we build for ---------- */}
+        <section className="h-section h-audience" aria-label="Who we build for">
+          <div className="h-container">
+            <Reveal>
+              <p className="h-audience-line">{BRAND.audienceLine}</p>
+            </Reveal>
+          </div>
+        </section>
+
         {/* ---------- VISION + MISSION ---------- */}
         <section id="vision" className="h-section h-vision" aria-label="Vision and Mission">
           <div className="h-container h-vision-inner">
