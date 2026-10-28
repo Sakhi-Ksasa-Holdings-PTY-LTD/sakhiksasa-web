@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Fraunces, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,6 +15,15 @@ const fraunces = Fraunces({
   display: "swap",
   weight: "variable",
   axes: ["opsz"],
+});
+
+// Space Grotesk — geometric, characterful, for the small eyebrow/meta phrases
+// that need to feel alive and distinct from the body and display fonts.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const SITE_URL = "https://sakhiksasa-web.onrender.com";
@@ -65,7 +74,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${spaceGrotesk.variable}`}>
       <head>
         <script
           type="application/ld+json"
