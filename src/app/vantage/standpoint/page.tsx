@@ -149,60 +149,60 @@ export default function StandpointPage() {
                 <figure className="h-gallery-item">
                   <img
                     src={`${ASSETS}/images/ui_01_dashboard_1920x1080.png`}
-                    alt="Standpoint dashboard: the Standing Index gauge at 68, a category benchmark ranking you against three competitors, blind-spot flags and the monthly briefing card."
+                    alt="Standpoint dashboard: the Standing Index gauge at 68 for Sakhi'ksasa Holdings, a category benchmark ranking you against Haefele Software, Brave Digital and CubeZoo, blind-spot flags and the monthly briefing card."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>The dashboard — your Standing Index, benchmark and flags in one view. <em>(Sample data)</em></figcaption>
+                  <figcaption>The dashboard — your Standing Index, benchmark and flags in one view. <em>(Sample data: Sakhi'ksasa Holdings)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
                     src={`${ASSETS}/images/ui_02_signals_1920x1080.png`}
-                    alt="Signal breakdown table showing SEO, social, ad spend, reviews and pricing scores, with your position versus the category leader and trend arrows."
+                    alt="Signal breakdown table showing SEO, social, ad spend, reviews and pricing scores for Sakhi'ksasa Holdings, with your position versus the category leader and trend arrows."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>The five signals behind your score — leads green, lags red. <em>(Sample data)</em></figcaption>
+                  <figcaption>The five signals behind your score — leads green, lags red. <em>(Sample data: Sakhi'ksasa Holdings)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
                     src={`${ASSETS}/images/ui_03_blindspots_1920x1080.png`}
-                    alt="Blind spots screen: a 31-point ad-spend gap and a 14-point social gap, each with a plain-English action to take."
+                    alt="Blind spots screen: a 31-point ad-spend gap behind Haefele Software and a 14-point social gap behind Brave Digital, each with a plain-English action to take."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>Blind spots — each gap comes with what to do about it. <em>(Sample data)</em></figcaption>
+                  <figcaption>Blind spots — each gap comes with what to do about it. <em>(Sample data: Sakhi'ksasa Holdings)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
                     src={`${ASSETS}/images/ui_04_briefing_1920x1080.png`}
-                    alt="The monthly briefing document: what moved, what it means, and the next moves worth making."
+                    alt="The October monthly briefing for Sakhi'ksasa Holdings: what moved, what it means, and the next moves worth making."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>The monthly briefing — what moved, what it means, next moves. <em>(Sample data)</em></figcaption>
+                  <figcaption>The monthly briefing — what moved, what it means, next moves. <em>(Sample data: Sakhi'ksasa Holdings)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
                     src={`${ASSETS}/images/ui_05_competitors_1920x1080.png`}
-                    alt="Competitor set comparison: you and three competitors scored across all five signals, side by side."
+                    alt="Competitor set comparison: Sakhi'ksasa Holdings versus Haefele Software, Brave Digital and CubeZoo, scored across all five signals, side by side."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>You vs the competitors that matter — every signal, side by side. <em>(Sample data)</em></figcaption>
+                  <figcaption>You vs the competitors that matter — every signal, side by side. <em>(Sample data: Sakhi'ksasa Holdings)</em></figcaption>
                 </figure>
               </Reveal>
             </div>
