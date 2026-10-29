@@ -28,11 +28,11 @@ export const BRAND = {
   location: "South Africa",
   email: "sakhiksasaholdingsptyltd@gmail.com",
   /**
-   * Division mark — the official orbit mark from the Oct 2026 brand sheet.
+   * Division mark — the official orbit mark (existing design, brand colours).
    * Core = holding company, 4 solid nodes = divisions, dashed node = what comes next.
    * This is THE mark carried by Vantage and by every system under the Vantage division.
    */
-  divisionLogo: "/logo-orbit-mark.png",
+  divisionLogo: "/favicon.png",
   instagram: "https://instagram.com/sakhi.holdings",
   instagramHandle: "@sakhi.holdings",
   /** Official company X (Twitter) account — founder-approved. */
