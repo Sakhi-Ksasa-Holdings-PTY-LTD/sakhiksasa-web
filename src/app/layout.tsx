@@ -33,8 +33,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sakhi'ksasa Holdings (Pty) Ltd" }],
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png", sizes: "512x512" }],
-    apple: [{ url: "/favicon.png", sizes: "512x512" }],
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon-dark.png", type: "image/png", sizes: "512x512", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "512x512" },
+      { url: "/apple-touch-icon-dark.png", sizes: "512x512", media: "(prefers-color-scheme: dark)" },
+    ],
     shortcut: ["/favicon.png"],
   },
   manifest: "/site.webmanifest",
