@@ -34,16 +34,16 @@ export const metadata: Metadata = {
   authors: [{ name: "Sakhi'ksasa Holdings (Pty) Ltd" }],
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
-      { url: "/favicon-dark.png", type: "image/png", sizes: "512x512", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-512.png", type: "image/png", sizes: "512x512" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "512x512" },
-      { url: "/apple-touch-icon-dark.png", sizes: "512x512", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon-180.png", sizes: "180x180" },
     ],
-    shortcut: ["/favicon.png"],
   },
   manifest: "/site.webmanifest",
+  themeColor: "#0B0E33",
   openGraph: {
     title: "Sakhi'ksasa Holdings (Pty) Ltd",
     description:

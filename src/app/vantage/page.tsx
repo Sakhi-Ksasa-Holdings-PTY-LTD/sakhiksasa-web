@@ -13,6 +13,17 @@ const division = visibleDivisions[0]; // Vantage — the only visible division
 export const metadata: Metadata = {
   title: "Vantage",
   description: division.descriptor,
+  openGraph: {
+    title: "Vantage by Sakhi'ksasa",
+    description: division.descriptor,
+    images: [{ url: "/vantage-profile-1080.png", width: 1080, height: 1080, alt: "Vantage by Sakhi'ksasa logo" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vantage by Sakhi'ksasa",
+    description: division.descriptor,
+    images: ["/vantage-profile-1080.png"],
+  },
 };
 
 export default function VantagePage() {
@@ -30,12 +41,18 @@ export default function VantagePage() {
           <div className="h-hero-grid" aria-hidden="true" />
           <div className="h-hero-inner h-cover-inner">
             <figure className="h-cover-figure">
-              <DivisionMark size="lg" />
+              <img
+                src="/vantage-profile-1080.png"
+                alt="Vantage by Sakhi'ksasa logo"
+                width={1080}
+                height={1080}
+                style={{ maxWidth: '128px', height: 'auto', borderRadius: '20px' }}
+              />
               <figcaption className="sr-only-h">
                 The Vantage division mark — carried by every system in the division.
               </figcaption>
             </figure>
-            <div className="h-hero-eyebrow">A {BRAND.shortName} division · Live</div>
+            <div className="h-hero-eyebrow">Vantage by Sakhi&rsquo;ksasa · Live</div>
             <h1 className="h-hero-division-name">Vantage</h1>
             <p className="h-hero-sub" style={{ maxWidth: '52ch' }}>{division.descriptor}</p>
           </div>
