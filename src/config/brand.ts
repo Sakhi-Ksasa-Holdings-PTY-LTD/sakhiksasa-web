@@ -50,11 +50,10 @@ export const BRAND = {
     "Sakhi'ksasa Holdings is a self-funded, privately-owned holding company that builds, owns, and operates systems for the long term.",
 
   /**
-   * Audience positioning line — who the company builds for. Founder-approved:
-   * "Built for businesses that lead — and businesses that last." Used as a
-   * bold statement on the home page.
+   * Audience positioning line — the Sakhi'ksasa motto.
+   * Used as a bold statement on the home page.
    */
-  audienceLine: "Built for businesses that lead — and businesses that last.",
+  audienceLine: "Tomorrow built today.",
 
   /* ---------- Company copy — verbatim, founder-approved ---------- */
   vision:
