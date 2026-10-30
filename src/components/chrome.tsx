@@ -151,6 +151,7 @@ export function ContactModal() {
           company: String(data.get('company') || ''),
           topic: String(data.get('topic') || 'General enquiry'),
           message: String(data.get('message') || ''),
+          subscribeUpdates: data.get('subscribeUpdates') === 'on',
         }),
       });
       const json = await res.json();
@@ -220,6 +221,10 @@ export function ContactModal() {
               <label className="h-cf-label">
                 Message *
                 <textarea name="message" required minLength={10} maxLength={4000} rows={5} className={inputStyle} placeholder="What do you want to know or do?" />
+              </label>
+              <label className="h-cf-checkbox">
+                <input type="checkbox" name="subscribeUpdates" defaultChecked />
+                <span>Send me product updates, new systems, and Sakhi&rsquo;ksasa news by email. I can unsubscribe at any time.</span>
               </label>
               {state === 'error' && <p className="h-cf-error" role="alert">{error}</p>}
               <div className="h-cf-actions">

@@ -2293,6 +2293,28 @@ textarea.h-cf-input { resize: vertical; min-height: 110px; font-family: inherit;
   padding: 10px 14px;
 }
 .h-cf-actions { display: flex; align-items: center; gap: var(--h-space-3); flex-wrap: wrap; margin-top: 4px; }
+.h-cf-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--h-text-sm);
+  color: var(--h-ink-soft);
+  cursor: pointer;
+  padding: 12px 14px;
+  background: var(--h-surface-alt);
+  border: 1px solid var(--h-border);
+  border-radius: 10px;
+  line-height: 1.45;
+}
+.h-cf-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--h-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.h-cf-checkbox span { flex: 1; }
 .h-cf-mailto { font-size: var(--h-text-xs); color: var(--h-muted); }
 .h-cf-mailto:hover { color: var(--h-primary); }
 .h-cf-done { text-align: center; padding: var(--h-space-4) 0; }

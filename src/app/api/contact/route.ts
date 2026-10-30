@@ -39,6 +39,7 @@ interface ContactPayload {
   company?: string;
   topic?: string;
   message: string;
+  subscribeUpdates?: boolean;
 }
 
 function isValidEmail(v: string): boolean {
@@ -250,6 +251,7 @@ export async function POST(req: Request) {
     ip,
     ua: req.headers.get('user-agent') || 'unknown',
     ...payload,
+    subscribeUpdates: payload.subscribeUpdates ?? true,
   });
 
   // 2. Auto-reply to the enquirer (acknowledgement only). Failure doesn't fail the request.
