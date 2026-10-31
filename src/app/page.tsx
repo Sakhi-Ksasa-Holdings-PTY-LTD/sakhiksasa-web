@@ -3,12 +3,11 @@ import { BRAND, visibleDivisions } from '@/config/brand';
 
 /* ============================================================
    Home — company-first.
-   Company name LARGE in the hero with the motto, then vision,
-   values, and "The House" showing only visible divisions.
-   Standpoint depth lives on /vantage/standpoint — NOT here.
+   Company name LARGE in the hero with the motto + orbit symbol
+   as visual anchor, then vision, values, and "The House" showing
+   only visible divisions. Standpoint depth lives on
+   /vantage/standpoint — NOT here.
 ============================================================ */
-
-const SKYLINE_HEIGHTS = [62, 88, 48, 78, 56, 92, 44, 82, 60, 70, 50, 86];
 
 export default function HomePage() {
   return (
@@ -16,9 +15,19 @@ export default function HomePage() {
       <GlassOrbs />
       <Nav />
       <main style={{ flex: 1 }}>
-        {/* ---------- HERO: company name LARGE + motto ---------- */}
+        {/* ---------- HERO: company name LARGE + motto + orbit symbol anchor ---------- */}
         <section id="home" className="h-hero" aria-label="Introduction">
           <div className="h-hero-grid" aria-hidden="true" />
+          <div className="h-hero-symbol" aria-hidden="true">
+            <img
+              src="/portraits/symbol-dark-bg.svg"
+              alt=""
+              width={1024}
+              height={1024}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
           <div className="h-hero-inner">
             <div className="h-hero-eyebrow">Holding company · Est. {BRAND.founded}</div>
             <h1 className="h-hero-company">
@@ -37,11 +46,6 @@ export default function HomePage() {
                 The House
               </a>
             </div>
-          </div>
-          <div className="h-skyline" aria-hidden="true">
-            {SKYLINE_HEIGHTS.map((h, i) => (
-              <div key={i} className="bar" style={{ height: `${h}%`, animationDelay: `${i * 0.06}s` }} />
-            ))}
           </div>
         </section>
 

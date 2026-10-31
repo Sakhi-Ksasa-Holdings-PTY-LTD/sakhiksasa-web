@@ -31,8 +31,9 @@ export const BRAND = {
    * Division mark — the official orbit mark (existing design, brand colours).
    * Core = holding company, 4 solid nodes = divisions, dashed node = what comes next.
    * This is THE mark carried by Vantage and by every system under the Vantage division.
+   * Uses the standalone symbol file (transparent SVG, designed for dark backgrounds).
    */
-  divisionLogo: "/favicon.png",
+  divisionLogo: "/portraits/symbol-dark-bg.svg",
   instagram: "https://instagram.com/sakhi.holdings",
   instagramHandle: "@sakhi.holdings",
   /** Official company X (Twitter) account — founder-approved. */

@@ -81,8 +81,9 @@ export function GlassOrbs() {
 }
 
 /* ----------------------------- Division mark -----------------------------
-   The official division logo (the Standpoint system mark), presented in a
-   glass tile. Used on the Vantage cover and on every Vantage system card. */
+   The official division logo (the Sakhi'ksasa orbit mark), presented in a
+   glass tile. Used on the Vantage cover and on every Vantage system card.
+   Uses the standalone symbol file on a dark background (transparent SVG). */
 export function DivisionMark({ size = 'md', className = '' }: { size?: 'md' | 'lg'; className?: string }) {
   return (
     <span className={`h-division-mark h-division-mark-${size} ${className}`.trim()}>
@@ -242,15 +243,26 @@ export function ContactModal() {
   );
 }
 
-/* ----------------------------- Brand mark ----------------------------- */
+/* ----------------------------- Brand mark -----------------------------
+   The official horizontal logo lockup (orbit symbol + wordmark).
+   Uses logo-horizontal-header-800x200.png at 1x and
+   logo-horizontal-header-1600x400.png at 2x via srcset.
+   Rendered at 48-56px height desktop, 40-44px mobile.
+   Background must be #0E1033 (brand-ink) so the image blends. */
 export function BrandMark() {
   return (
-    <a href="/" className="h-brand" aria-label={`${BRAND.shortName} — home`}>
-      <img src="/favicon.png" alt="" width={40} height={40} className="h-brand-mark-img" aria-hidden="true" />
-      <span className="h-brand-name">
-        <strong>Sakhi&rsquo;ksasa</strong>
-        <span>Holdings</span>
-      </span>
+    <a href="/" className="h-brand" aria-label="Sakhi'ksasa Holdings — home">
+      <img
+        src="/portraits/logo-horizontal-header-800x200.png"
+        srcSet="/portraits/logo-horizontal-header-800x200.png 1x, /portraits/logo-horizontal-header-1600x400.png 2x"
+        alt="Sakhi'ksasa Holdings"
+        width={224}
+        height={56}
+        loading="eager"
+        // @ts-expect-error — fetchpriority is a valid HTML attr but not in TS React types yet
+        fetchpriority="high"
+        className="h-brand-mark-img"
+      />
     </a>
   );
 }

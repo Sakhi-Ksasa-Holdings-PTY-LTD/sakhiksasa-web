@@ -3,9 +3,12 @@
    Pure CSS (no Tailwind). All rules scoped under `.holdings`
    so they never collide with vendor styles.
 
-   Brand palette (Oct 2026 brand sheet):
-     #2B2FD9 Indigo, #E8590C Orange, #F3F1EA Off-white, #14143A Ink,
-     #7B7FFF Sky (on dark), #FF7A2E Flame (on dark)
+   Brand palette (Oct 2026 brand pack — final):
+     #0E1033 Ink (page + header/footer dark surface)
+     #7B7FFF Indigo (primary accent on dark, links, headings, borders)
+     #4F53E8 Indigo-deep (indigo accent on light surfaces — contrast-safe)
+     #FF7A2E Orange (single CTA accent — sparingly: buttons, highlights)
+     #F5F2EA Cream (primary text on dark, light section backgrounds)
    Font: Sora (brand sheet prescribes Sora throughout)
 ============================================================ */
 
@@ -15,8 +18,8 @@
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
-  background-color: #F3F1EA;
-  color: #14143A;
+  background-color: #F5F2EA;
+  color: #0E1033;
   font-family: var(--font-sora, -apple-system, BlinkMacSystemFont, sans-serif);
   font-size: 1rem;
   line-height: 1.65;
@@ -32,35 +35,46 @@ a { color: inherit; text-decoration: none; }
 
 /* ============================================================
    SAKHI'KSASA HOLDINGS — Premium corporate marketing site
-   Palette from official brand sheet (Oct 2026 refresh):
-     #2B2FD9 Indigo (primary), #E8590C Orange (accent),
-     #F3F1EA Off-white (light), #14143A Ink (text/dark),
-     #7B7FFF Sky (on dark), #FF7A2E Flame (on dark)
+   Brand palette (Oct 2026 brand pack — final):
+     #0E1033 Ink (page + header/footer dark surface)
+     #7B7FFF Indigo (primary accent on dark, links, headings, borders)
+     #4F53E8 Indigo-deep (indigo accent on light surfaces — contrast-safe)
+     #FF7A2E Orange (single CTA accent — sparingly: buttons, highlights)
+     #F5F2EA Cream (primary text on dark, light section backgrounds)
    Font: Sora (display + body + eyebrows — brand sheet prescribes Sora throughout)
    All rules scoped under `.holdings` so they never collide
    with the Standpoint SaaS styles above.
 ============================================================ */
 .holdings {
-  /* Brand palette — from brand sheet */
-  --h-primary: #2b2fd9;
-  --h-primary-dark: #1e22a3;
-  --h-primary-soft: #e7e8fb;
-  --h-accent: #e8590c;
-  --h-accent-dark: #c44a08;
-  --h-accent-soft: #fde9d6;
+  /* Brand palette — Oct 2026 brand pack (final) */
+  /* --brand-* tokens are the canonical names from the brand spec.
+     The --h-* aliases are kept for backward compat with existing CSS. */
+  --brand-ink: #0E1033;
+  --brand-indigo: #7B7FFF;
+  --brand-indigo-deep: #4F53E8;
+  --brand-orange: #FF7A2E;
+  --brand-cream: #F5F2EA;
+
+  /* Legacy aliases (mapped to the new brand tokens) */
+  --h-primary: var(--brand-indigo-deep);   /* was #2b2fd9 → now #4F53E8 (indigo on light) */
+  --h-primary-dark: #3A3DB8;                /* darker shade of brand-indigo-deep */
+  --h-primary-soft: #E5E6FB;                /* light tint of brand-indigo-deep */
+  --h-accent: var(--brand-orange);          /* was #e8590c → now #FF7A2E */
+  --h-accent-dark: #D85F1E;                 /* darker shade of brand-orange */
+  --h-accent-soft: #FFE9D9;                 /* light tint of brand-orange */
   /* On-dark variants (for dark sections / orbit mark backgrounds) */
-  --h-sky: #7b7fff;
-  --h-flame: #ff7a2e;
+  --h-sky: var(--brand-indigo);             /* #7B7FFF — indigo on dark */
+  --h-flame: var(--brand-orange);           /* #FF7A2E — orange on dark */
 
   /* Neutrals */
-  --h-ink: #14143a;
-  --h-ink-soft: #4a4a6e;
-  --h-surface: #f3f1ea;
-  --h-surface-alt: #ffffff;
-  --h-surface-deep: #eae6da;
-  --h-muted: #6b6b8e;
-  --h-border: #e0ddd5;
-  --h-border-strong: #c9c4b6;
+  --h-ink: var(--brand-ink);                /* #0E1033 */
+  --h-ink-soft: #4A4D6E;
+  --h-surface: var(--brand-cream);          /* #F5F2EA */
+  --h-surface-alt: #FFFFFF;
+  --h-surface-deep: #EAE6D8;
+  --h-muted: #6B6E8E;
+  --h-border: #DDD9CB;
+  --h-border-strong: #C9C4B6;
 
   /* Type — Sora throughout per brand sheet */
   --h-font-display: var(--font-sora), -apple-system, BlinkMacSystemFont, sans-serif;
@@ -190,15 +204,14 @@ a { color: inherit; text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(243, 240, 234, 0.82);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s var(--h-ease), background 0.3s var(--h-ease);
+  /* Header background must be exactly #0E1033 (brand-ink) so the
+     horizontal logo image blends with no visible edge. */
+  background: #0E1033;
+  border-bottom: 1px solid rgba(123, 127, 255, 0.12);
+  transition: border-color 0.3s var(--h-ease);
 }
 .h-header[data-scrolled="true"] {
-  border-bottom-color: var(--h-border);
-  background: rgba(243, 240, 234, 0.94);
+  border-bottom-color: rgba(123, 127, 255, 0.22);
 }
 .h-header-inner {
   max-width: var(--h-max-width);
@@ -214,69 +227,39 @@ a { color: inherit; text-decoration: none; }
   .h-header-inner { padding: 0 var(--h-space-6); }
 }
 
+/* Brand mark — the official horizontal logo lockup (orbit symbol +
+   wordmark). Image has its own #0E1033 background so it blends with
+   the header. Rendered at 48-56px desktop, 40-44px mobile. */
 .h-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
   font-family: var(--h-font-display);
-  font-size: 1.375rem;
   font-weight: 700;
-  color: var(--h-ink);
-  letter-spacing: -0.02em;
+  color: var(--h-surface);
   text-decoration: none;
+  /* Clear space around the mark: at least half the symbol's diameter.
+     The symbol is ~56px in the lockup, so ~28px clear space → we use
+     padding on the link. */
+  padding: 4px 0;
 }
-.h-brand:hover { color: var(--h-ink); }
-.h-brand-mark {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--h-ink);
-  display: grid;
-  place-items: center;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.h-brand-mark::before {
-  content: "";
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border: 2.5px solid var(--h-primary);
-  border-radius: 50%;
-}
-.h-brand-mark::after {
-  content: "";
-  position: absolute;
-  width: 7px;
-  height: 14px;
-  background: var(--h-accent);
-  border-radius: 999px 999px 0 0;
-  top: 6px;
-  transform: translateY(-1px);
-}
-
-/* Image-based brand mark (uses the official logo favicon) */
+.h-brand:hover { opacity: 0.88; }
 .h-brand-mark-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  height: 52px;        /* desktop: 48-56px range */
+  width: auto;         /* preserve aspect ratio (4:1 lockup) */
   flex-shrink: 0;
-  object-fit: cover;
   display: block;
+  border-radius: 0;    /* image has its own background — no tile */
+  /* Prevent layout shift — width/height attrs are on the <img> tag */
 }
-
-.h-brand-name { display: flex; flex-direction: column; line-height: 1; }
-.h-brand-name strong { font-weight: 700; }
-.h-brand-name span {
-  font-family: var(--h-font-body);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--h-muted);
-  margin-top: 4px;
+@media (max-width: 767px) {
+  .h-brand-mark-img {
+    height: 42px;      /* mobile: 40-44px range */
+  }
 }
+/* The old .h-brand-mark tile + ::before/::after pseudo-elements that
+   drew a CSS orbit mark are removed — the image replaces them. */
+.h-brand-mark { display: none; }
+.h-brand-name { display: none; }
 
 .h-nav {
   display: none;
@@ -287,11 +270,12 @@ a { color: inherit; text-decoration: none; }
   .h-nav { display: flex; }
 }
 .h-nav a {
-  color: var(--h-ink);
+  color: var(--h-surface);
   font-size: var(--h-text-sm);
   font-weight: 500;
   position: relative;
   padding: 6px 0;
+  opacity: 0.85;
 }
 .h-nav a::after {
   content: "";
@@ -300,10 +284,10 @@ a { color: inherit; text-decoration: none; }
   bottom: 0;
   width: 0;
   height: 2px;
-  background: var(--h-accent);
+  background: var(--h-flame);
   transition: width 0.3s var(--h-ease);
 }
-.h-nav a:hover { color: var(--h-accent); }
+.h-nav a:hover { color: #fff; opacity: 1; }
 .h-nav a:hover::after,
 .h-nav a[data-active="true"]::after { width: 100%; }
 
@@ -322,11 +306,11 @@ a { color: inherit; text-decoration: none; }
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  border: 1px solid var(--h-border);
-  background: var(--h-surface-alt);
-  color: var(--h-ink);
+  border: 1px solid rgba(123, 127, 255, 0.25);
+  background: rgba(123, 127, 255, 0.08);
+  color: var(--h-surface);
 }
-.h-menu-btn:hover { border-color: var(--h-primary); }
+.h-menu-btn:hover { border-color: var(--h-sky); background: rgba(123, 127, 255, 0.16); }
 @media (min-width: 900px) {
   .h-menu-btn { display: none; }
 }
@@ -452,21 +436,20 @@ a { color: inherit; text-decoration: none; }
 .h-btn-ghost-light {
   background: transparent;
   color: var(--h-surface);
-  border-color: rgba(243, 240, 234, 0.35);
+  border-color: rgba(245, 242, 234, 0.35);
 }
 .h-btn-ghost-light:hover {
-  background: rgba(243, 240, 234, 0.08);
+  background: rgba(245, 242, 234, 0.08);
   color: #fff;
-  border-color: rgba(243, 240, 234, 0.55);
+  border-color: rgba(245, 242, 234, 0.55);
 }
 .h-btn-lg { padding: 16px 32px; font-size: var(--h-text-base); }
 
 /* ---------------- HERO ---------------- */
 .h-hero {
   position: relative;
-  /* Brand sheet (Oct 2026): Ink #14143A as the hero dark background,
-     with Sky #7B7FFF + Flame #FF7A2E orbital light accents — matches the
-     dark logo files (F2/F6 Orbit dark) and the "on dark" colour variants. */
+  /* Brand pack (Oct 2026): Ink #0E1033 as the hero dark background,
+     with Indigo #7B7FFF + Orange #FF7A2E orbital light accents. */
   background: var(--h-ink);
   color: var(--h-surface);
   padding: var(--h-space-20) 0 var(--h-space-16);
@@ -485,12 +468,38 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(243, 241, 234, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(243, 241, 234, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(245, 242, 234, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 242, 234, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 70% 80% at 50% 40%, #000 30%, transparent 90%);
   -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 40%, #000 30%, transparent 90%);
   pointer-events: none;
+}
+/* Orbit symbol — large visual anchor on the right side of the hero.
+   Uses symbol-dark-bg.svg (transparent, designed for dark backgrounds).
+   Faded so the text remains the primary focus. Hidden on mobile (the
+   hero text takes the full width on small screens). */
+.h-hero-symbol {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  transform: translateY(-50%);
+  width: 520px;
+  max-width: 40vw;
+  height: 520px;
+  max-height: 80vh;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.18;
+  display: none;  /* hidden on mobile */
+}
+.h-hero-symbol img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media (min-width: 1024px) {
+  .h-hero-symbol { display: block; }
 }
 .h-hero-inner {
   max-width: var(--h-max-width);
@@ -551,7 +560,7 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: repeat(2, 1fr);
   gap: var(--h-space-4);
   padding-top: var(--h-space-6);
-  border-top: 1px solid rgba(243, 240, 234, 0.14);
+  border-top: 1px solid rgba(245, 242, 234, 0.14);
   max-width: 720px;
 }
 @media (min-width: 768px) {
@@ -570,7 +579,7 @@ a { color: inherit; text-decoration: none; }
   font-size: var(--h-text-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(243, 240, 234, 0.55);
+  color: rgba(245, 242, 234, 0.55);
 }
 
 /* Skyline motif */
@@ -818,7 +827,7 @@ a { color: inherit; text-decoration: none; }
 .h-vision-mission-text {
   font-size: clamp(var(--h-text-lg), 2vw, var(--h-text-xl));
   line-height: 1.65;
-  color: rgba(243, 240, 234, 0.86);
+  color: rgba(245, 242, 234, 0.86);
   max-width: 70ch;
 }
 
@@ -836,14 +845,14 @@ a { color: inherit; text-decoration: none; }
   .h-values { grid-template-columns: repeat(5, 1fr); }
 }
 .h-value {
-  background: rgba(243, 240, 234, 0.04);
-  border: 1px solid rgba(243, 240, 234, 0.12);
+  background: rgba(245, 242, 234, 0.04);
+  border: 1px solid rgba(245, 242, 234, 0.12);
   border-radius: var(--h-radius);
   padding: var(--h-space-5);
   transition: all 0.3s var(--h-ease);
 }
 .h-value:hover {
-  background: rgba(243, 240, 234, 0.08);
+  background: rgba(245, 242, 234, 0.08);
   border-color: rgba(232, 89, 12, 0.4);
   transform: translateY(-3px);
 }
@@ -861,7 +870,7 @@ a { color: inherit; text-decoration: none; }
 }
 .h-value-desc {
   margin-top: var(--h-space-2);
-  color: rgba(243, 240, 234, 0.68);
+  color: rgba(245, 242, 234, 0.68);
   font-size: var(--h-text-sm);
   line-height: 1.6;
 }
@@ -870,7 +879,7 @@ a { color: inherit; text-decoration: none; }
 .h-goals {
   margin-top: var(--h-space-12);
   padding-top: var(--h-space-8);
-  border-top: 1px solid rgba(243, 240, 234, 0.16);
+  border-top: 1px solid rgba(245, 242, 234, 0.16);
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--h-space-2);
@@ -880,7 +889,7 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: 48px 1fr;
   gap: var(--h-space-4);
   padding: var(--h-space-4) 0;
-  border-bottom: 1px solid rgba(243, 240, 234, 0.1);
+  border-bottom: 1px solid rgba(245, 242, 234, 0.1);
   align-items: start;
 }
 .h-goal-num {
@@ -892,7 +901,7 @@ a { color: inherit; text-decoration: none; }
 }
 .h-goal-text {
   font-size: var(--h-text-lg);
-  color: rgba(243, 240, 234, 0.88);
+  color: rgba(245, 242, 234, 0.88);
   line-height: 1.55;
   max-width: 70ch;
 }
@@ -983,8 +992,8 @@ a { color: inherit; text-decoration: none; }
 .h-index-card {
   position: relative;
   z-index: 2;
-  background: rgba(243, 240, 234, 0.06);
-  border: 1px solid rgba(243, 240, 234, 0.14);
+  background: rgba(245, 242, 234, 0.06);
+  border: 1px solid rgba(245, 242, 234, 0.14);
   border-radius: var(--h-radius);
   padding: var(--h-space-4);
   backdrop-filter: blur(8px);
@@ -994,7 +1003,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(243, 240, 234, 0.6);
+  color: rgba(245, 242, 234, 0.6);
 }
 .h-index-value {
   font-family: var(--h-font-display);
@@ -1309,7 +1318,7 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: 1fr;
   gap: var(--h-space-6);
   padding-bottom: var(--h-space-6);
-  border-bottom: 1px solid rgba(243, 240, 234, 0.12);
+  border-bottom: 1px solid rgba(245, 242, 234, 0.12);
 }
 @media (min-width: 768px) {
   .h-footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
@@ -1320,9 +1329,13 @@ a { color: inherit; text-decoration: none; }
   gap: var(--h-space-3);
 }
 .h-footer-brand .h-brand { color: #fff; }
-.h-footer-brand .h-brand-name span { color: rgba(243, 240, 234, 0.55); }
+/* Footer logo: 40px height per spec, same horizontal lockup. */
+.h-footer-brand .h-brand-mark-img {
+  height: 40px;
+  width: auto;
+}
 .h-footer-tag {
-  color: rgba(243, 240, 234, 0.7);
+  color: rgba(245, 242, 234, 0.7);
   font-size: var(--h-text-sm);
   max-width: 38ch;
   line-height: 1.6;
@@ -1332,12 +1345,12 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(243, 240, 234, 0.55);
+  color: rgba(245, 242, 234, 0.55);
   margin-bottom: var(--h-space-3);
 }
 .h-footer-col ul { display: flex; flex-direction: column; gap: 10px; }
 .h-footer-col a {
-  color: rgba(243, 240, 234, 0.85);
+  color: rgba(245, 242, 234, 0.85);
   font-size: var(--h-text-sm);
   font-weight: 500;
 }
@@ -1354,7 +1367,7 @@ a { color: inherit; text-decoration: none; }
 }
 .h-footer-copy {
   font-size: var(--h-text-xs);
-  color: rgba(243, 240, 234, 0.55);
+  color: rgba(245, 242, 234, 0.55);
   letter-spacing: 0.02em;
 }
 .h-footer-social { display: flex; gap: var(--h-space-2); }
@@ -1364,8 +1377,8 @@ a { color: inherit; text-decoration: none; }
   border-radius: 10px;
   display: grid;
   place-items: center;
-  color: rgba(243, 240, 234, 0.75);
-  border: 1px solid rgba(243, 240, 234, 0.16);
+  color: rgba(245, 242, 234, 0.75);
+  border: 1px solid rgba(245, 242, 234, 0.16);
   transition: all 0.25s var(--h-ease);
 }
 .h-footer-social a:hover {
@@ -1458,7 +1471,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: rgba(243, 240, 234, 0.92);
+  color: rgba(245, 242, 234, 0.92);
   max-width: none;
   margin: 0;
 }
@@ -1889,7 +1902,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Mobile drawer — frosted glass panel */
 .h-drawer-panel {
-  background: rgba(243, 240, 234, 0.86);
+  background: rgba(245, 242, 234, 0.86);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
   backdrop-filter: blur(24px) saturate(140%);
 }
@@ -1899,15 +1912,10 @@ a { color: inherit; text-decoration: none; }
   backdrop-filter: blur(6px);
 }
 
-/* Header — brighter glass so the drifting light reads through it */
-.h-header {
-  background: rgba(243, 240, 234, 0.68);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  backdrop-filter: blur(20px) saturate(160%);
-}
-.h-header[data-scrolled="true"] {
-  background: rgba(243, 240, 234, 0.88);
-}
+/* Header — dark ink background per brand spec (#0E1033).
+   The old "brighter glass" override is removed; the canonical header
+   rule is the one at line 203. The header must be solid #0E1033 so
+   the horizontal logo image blends with no visible edge. */
 
 /* Ghost button on dark hero — glass chip */
 .h-btn-ghost-light {
@@ -2138,23 +2146,14 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 28px 56px -20px rgba(26, 26, 46, 0.45), inset 0 1px 0 #fff;
 }
 .h-drawer-panel {
-  background: rgba(243, 240, 234, 0.9);
+  background: rgba(245, 242, 234, 0.9);
   -webkit-backdrop-filter: blur(28px) saturate(150%);
   backdrop-filter: blur(28px) saturate(150%);
 }
 
-/* Header — glass you can feel when content scrolls under it */
-.h-header {
-  background: rgba(243, 240, 234, 0.62);
-  -webkit-backdrop-filter: blur(22px) saturate(170%);
-  backdrop-filter: blur(22px) saturate(170%);
-  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.6);
-}
-.h-header[data-scrolled="true"] {
-  background: rgba(243, 240, 234, 0.85);
-  border-bottom-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 30px -18px rgba(26, 26, 46, 0.25), inset 0 -1px 0 rgba(255, 255, 255, 0.8);
-}
+/* Header — dark ink (#0E1033) per brand spec. The old "glass you can
+   feel" override is removed; the canonical header rule is at line 203.
+   The header must be solid #0E1033 so the horizontal logo image blends. */
 
 /* Division mark tile — app-icon glass */
 .h-division-mark {
@@ -2211,7 +2210,7 @@ a { color: inherit; text-decoration: none; }
   max-height: min(86vh, 780px);
   overflow-y: auto;
   border-radius: var(--h-radius-lg);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.97), rgba(243, 240, 234, 0.94));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.97), rgba(245, 242, 234, 0.94));
   -webkit-backdrop-filter: blur(28px) saturate(150%);
   backdrop-filter: blur(28px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, 1);

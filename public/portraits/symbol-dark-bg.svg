@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><g transform="translate(256,256) scale(1.1796078431372548)"><defs><mask id="m" maskUnits="userSpaceOnUse" x="-260" y="-260" width="520" height="520">
+<rect x="-260" y="-260" width="520" height="520" fill="#fff"/><circle cx="0" cy="-163" r="25" fill="#000"/></mask></defs>
+<circle r="202" fill="none" stroke="#7B7FFF" stroke-opacity="0.38" stroke-width="2.6" stroke-dasharray="7 7"/>
+<circle r="164" fill="none" stroke="#7B7FFF" stroke-width="4.5" mask="url(#m)"/>
+<circle r="46" fill="#7B7FFF"/><circle cx="-116" cy="-115.5" r="21.5" fill="#FF7A2E"/><circle cx="116" cy="-115.5" r="21.5" fill="#FF7A2E"/><circle cx="-116" cy="115.5" r="21.5" fill="#FF7A2E"/><circle cx="116" cy="115.5" r="21.5" fill="#FF7A2E"/>
+<circle cx="0" cy="-163" r="20" fill="none" stroke="#FF7A2E" stroke-width="4.5" stroke-dasharray="5.2 5.2"/></g></svg>
