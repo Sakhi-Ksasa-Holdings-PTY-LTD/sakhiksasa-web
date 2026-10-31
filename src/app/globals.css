@@ -1394,26 +1394,41 @@ a { color: inherit; text-decoration: none; }
 /* ---------------- COOKIE BANNER ---------------- */
 .h-cookie {
   position: fixed;
-  bottom: var(--h-space-3);
-  left: var(--h-space-3);
-  right: var(--h-space-3);
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 80;
   background: var(--h-surface-alt);
   border: 1px solid var(--h-border);
-  border-radius: var(--h-radius);
-  padding: var(--h-space-4);
-  box-shadow: 0 18px 40px -20px rgba(26, 26, 46, 0.35);
+  border-radius: 0;
+  padding: var(--h-space-3) var(--h-space-4);
+  box-shadow: 0 -18px 40px -20px rgba(14, 16, 51, 0.25);
   display: flex;
   flex-direction: column;
   gap: var(--h-space-3);
-  max-width: 540px;
-  margin-left: auto;
-  margin-right: auto;
+  /* Full-width at the bottom edge — no max-width, no auto margins.
+     This stops the banner from floating in the middle of the
+     viewport and obscuring the hero copy. It now docks to the
+     bottom edge like a standard cookie bar. */
+  margin: 0;
   transform: translateY(140%);
   transition: transform 0.4s var(--h-ease-out);
 }
 @media (min-width: 640px) {
-  .h-cookie { flex-direction: row; align-items: center; gap: var(--h-space-4); }
+  .h-cookie {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--h-space-4);
+    padding: var(--h-space-3) var(--h-space-6);
+    /* On desktop, center the content with a max-width so it doesn't
+       span the full screen edge-to-edge — but still docked at the
+       bottom, not floating in the middle. */
+    max-width: var(--h-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--h-radius) var(--h-radius) 0 0;
+  }
 }
 .h-cookie[data-show="true"] { transform: translateY(0); }
 .h-cookie-text {
