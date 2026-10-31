@@ -1431,6 +1431,19 @@ a { color: inherit; text-decoration: none; }
   }
 }
 .h-cookie[data-show="true"] { transform: translateY(0); }
+/* When the cookie banner is visible, add bottom padding to the page
+   so the banner doesn't cover the last ~92px of content. The body
+   padding is applied via a sibling selector — when the .h-cookie
+   div has data-show="true", the body gets scroll-padding so users
+   can scroll past the banner to see all content. This is a fallback
+   for the case where the hero is taller than the viewport (e.g. on
+   short laptop screens). */
+.h-cookie[data-show="true"] ~ * {
+  /* no-op — the rule below handles the padding */
+}
+/* Add scroll-padding-bottom so when the user scrolls to the bottom,
+   the cookie banner doesn't cover the footer's last line. */
+html { scroll-padding-bottom: 120px; }
 .h-cookie-text {
   font-size: var(--h-text-sm);
   color: var(--h-ink-soft);
