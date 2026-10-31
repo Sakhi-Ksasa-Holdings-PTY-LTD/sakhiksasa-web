@@ -229,7 +229,9 @@ a { color: inherit; text-decoration: none; }
 
 /* Brand mark — the official horizontal logo lockup (orbit symbol +
    wordmark). Image has its own #0E1033 background so it blends with
-   the header. Rendered at 48-56px desktop, 40-44px mobile. */
+   the header. Rendered at 48-56px desktop, 40-44px mobile.
+   NOTE: must use .h-brand .h-brand-mark-img (specificity 0,2,0) to
+   beat the .holdings img { height: auto } reset (0,1,1). */
 .h-brand {
   display: flex;
   align-items: center;
@@ -243,7 +245,7 @@ a { color: inherit; text-decoration: none; }
   padding: 4px 0;
 }
 .h-brand:hover { opacity: 0.88; }
-.h-brand-mark-img {
+.h-brand .h-brand-mark-img {
   height: 52px;        /* desktop: 48-56px range */
   width: auto;         /* preserve aspect ratio (4:1 lockup) */
   flex-shrink: 0;
@@ -252,7 +254,7 @@ a { color: inherit; text-decoration: none; }
   /* Prevent layout shift — width/height attrs are on the <img> tag */
 }
 @media (max-width: 767px) {
-  .h-brand-mark-img {
+  .h-brand .h-brand-mark-img {
     height: 42px;      /* mobile: 40-44px range */
   }
 }
@@ -1329,8 +1331,10 @@ a { color: inherit; text-decoration: none; }
   gap: var(--h-space-3);
 }
 .h-footer-brand .h-brand { color: #fff; }
-/* Footer logo: 40px height per spec, same horizontal lockup. */
-.h-footer-brand .h-brand-mark-img {
+/* Footer logo: 40px height per spec, same horizontal lockup.
+   Uses .h-footer-brand .h-brand .h-brand-mark-img (specificity 0,3,0)
+   to beat the .holdings img { height: auto } reset (0,1,1). */
+.h-footer-brand .h-brand .h-brand-mark-img {
   height: 40px;
   width: auto;
 }
