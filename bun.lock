@@ -5,7 +5,7 @@
     "": {
       "name": "sakhiksasa-web",
       "dependencies": {
-        "next": "^16.0.0",
+        "next": "^16.4.3",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },

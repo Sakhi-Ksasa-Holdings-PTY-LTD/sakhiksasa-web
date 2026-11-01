@@ -338,14 +338,22 @@ export function Nav() {
 /* ----------------------------- Reveal ----------------------------- */
 export function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  // Default to visible — content is never trapped off-screen if JS
+  // fails or IntersectionObserver isn't supported. The effect below
+  // toggles the reveal state via the observer's async callback, never
+  // via a synchronous setState in the effect body (avoids cascading
+  // renders per react-hooks/set-state-in-effect).
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Fallback: if IntersectionObserver never fires (e.g. element is
+    // below the fold and user never scrolls), reveal after 1.6s.
     const fallback = setTimeout(() => setReady(true), 1600);
     if (!('IntersectionObserver' in window)) {
-      setReady(true);
+      // No IntersectionObserver — the fallback timer handles the reveal.
+      // Don't call setReady(true) synchronously in the effect body.
       return () => clearTimeout(fallback);
     }
     const io = new IntersectionObserver(
