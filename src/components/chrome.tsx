@@ -164,8 +164,16 @@ export function ContactModal() {
       setRef(json.ref || '');
       setState('sent');
       form.reset();
-    } catch {
-      setError('Network error. Please email us directly.');
+    } catch (err) {
+      // Show the actual error — not just "Network error". The server
+      // returns structured errors (rate limit, validation, Brevo failure)
+      // that the user can act on. Only show "Network error" if the fetch
+      // itself truly failed (connection dropped, DNS, etc.).
+      const msg = err instanceof Error ? err.message : 'Network error. Please email us directly.';
+      setError(msg.includes('Failed to fetch') || msg.includes('Network')
+        ? 'Network error — please check your connection and try again, or email us directly.'
+        : msg
+      );
       setState('error');
     }
   };

@@ -177,18 +177,26 @@ async function sendBrevo(
   };
 
   try {
+    // 8-second timeout — Brevo normally responds in 1-3s. If it hangs,
+    // abort so the user's request doesn't sit open for 30s (which
+    // causes the browser fetch to throw + show "Network error").
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
     const res = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: { 'accept': 'application/json', 'content-type': 'application/json', 'api-key': apiKey },
       body: JSON.stringify(body),
+      signal: controller.signal,
     });
+    clearTimeout(timeout);
     if (!res.ok) {
       const t = await res.text().catch(() => '');
       return { ok: false, error: `Brevo ${res.status}: ${t.slice(0, 200)}` };
     }
     return { ok: true };
   } catch (e) {
-    return { ok: false, error: e instanceof Error ? e.message : 'Network error' };
+    const msg = e instanceof Error ? e.message : 'Network error';
+    return { ok: false, error: msg.includes('abort') ? 'Brevo timeout (8s)' : msg };
   }
 }
 
@@ -254,21 +262,26 @@ export async function POST(req: Request) {
     subscribeUpdates: payload.subscribeUpdates ?? true,
   });
 
-  // 2. Auto-reply to the enquirer (acknowledgement only). Failure doesn't fail the request.
-  const auto = await sendBrevo('autoreply', payload, ref, slaDue);
-  if (!auto.ok) {
-    await appendToLog({ ts, ref, slaState: 'autoreply-failed', note: auto.error });
+  // 2. Auto-reply to the enquirer + forward to the company inbox — IN PARALLEL
+  // (was sequential, which could take 4-10s + cause the browser fetch to
+  // timeout with a "Network error"). Failure of either doesn't fail the
+  // request — the enquiry is already logged.
+  const [auto, fwd] = await Promise.allSettled([
+    sendBrevo('autoreply', payload, ref, slaDue),
+    sendBrevo('forward', payload, ref, slaDue),
+  ]);
+  const autoResult = auto.status === 'fulfilled' ? auto.value : { ok: false, error: 'autoreply promise rejected' };
+  const fwdResult = fwd.status === 'fulfilled' ? fwd.value : { ok: false, error: 'forward promise rejected' };
+  if (!autoResult.ok) {
+    await appendToLog({ ts, ref, slaState: 'autoreply-failed', note: autoResult.error });
   }
-
-  // 3. Forward to the company inbox
-  const fwd = await sendBrevo('forward', payload, ref, slaDue);
-  if (!fwd.ok) {
-    console.warn('[contact] Forward failed:', fwd.error, '— enquiry logged only.');
-    await appendToLog({ ts, ref, slaState: 'forward-failed', note: fwd.error });
+  if (!fwdResult.ok) {
+    console.warn('[contact] Forward failed:', fwdResult.error, '— enquiry logged only.');
+    await appendToLog({ ts, ref, slaState: 'forward-failed', note: fwdResult.error });
   }
 
   return NextResponse.json(
-    { ok: true, ref, slaDue, autoReplied: auto.ok },
+    { ok: true, ref, slaDue, autoReplied: autoResult.ok },
     { status: 200 },
   );
 }
