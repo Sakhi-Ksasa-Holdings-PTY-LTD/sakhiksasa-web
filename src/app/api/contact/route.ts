@@ -200,7 +200,7 @@ async function sendBrevo(
   }
 }
 
-const COMPANY_INBOX_BASE_URL = process.env.SITE_BASE_URL || 'https://sakhiksasa-web.onrender.com';
+const COMPANY_INBOX_BASE_URL = process.env.SITE_BASE_URL || 'https://sakhiksasa.co.za';
 
 function escapeHtml(s: string): string {
   return String(s)

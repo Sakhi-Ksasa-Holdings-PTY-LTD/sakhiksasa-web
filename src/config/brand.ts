@@ -110,8 +110,8 @@ export const BRAND = {
     tagline: "Know where you stand. Fix where you lag.",
     description:
       "A competitive-intelligence platform that turns scattered competitor signals — SEO, social, ad spend, reviews, pricing — into a single 0–100 Standing Index. Built for companies that want to know where they lead, where they lag, and what to do about it.",
-    appUrl: "https://standpoint-web.onrender.com",
-    legalBase: "https://standpoint-web.onrender.com",
+    appUrl: "https://app.sakhiksasa.co.za",
+    legalBase: "https://app.sakhiksasa.co.za",
     pillars: [
       {
         title: "The Standing Index",

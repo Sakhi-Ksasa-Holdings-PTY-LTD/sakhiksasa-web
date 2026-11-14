@@ -13,7 +13,7 @@ const sora = Sora({
   weight: ["400", "500", "600", "700"],
 });
 
-const SITE_URL = "https://sakhiksasa-web.onrender.com";
+const SITE_URL = "https://sakhiksasa.co.za";
 const OG_IMAGE = `${SITE_URL}/portraits/og-image-1200x630.png`;
 
 export const metadata: Metadata = {
