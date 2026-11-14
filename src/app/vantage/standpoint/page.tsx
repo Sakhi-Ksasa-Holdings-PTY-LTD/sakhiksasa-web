@@ -148,7 +148,7 @@ export default function StandpointPage() {
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/ui_01_dashboard_1920x1080.png`}
+                    src={`${ASSETS}/images/spatial/dashboard_16x9.png`}
                     alt="Standpoint dashboard: the Standing Index gauge at 68 for Sakhi'ksasa Holdings, a category benchmark ranking you against Haefele Software, Brave Digital and CubeZoo, blind-spot flags and the Leak Ledger card."
                     width={1920}
                     height={1080}
@@ -160,7 +160,7 @@ export default function StandpointPage() {
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/ui_02_signals_1920x1080.png`}
+                    src={`${ASSETS}/images/spatial/signals_16x9.png`}
                     alt="Signal breakdown table showing SEO, social, ad spend, reviews and pricing scores for Sakhi'ksasa Holdings, with your position versus the category leader and trend arrows."
                     width={1920}
                     height={1080}
@@ -172,7 +172,7 @@ export default function StandpointPage() {
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/ui_03_blindspots_1920x1080.png`}
+                    src={`${ASSETS}/images/spatial/blindspots_16x9.png`}
                     alt="Blind spots screen: a 31-point ad-spend gap behind Haefele Software and a 14-point social gap behind Brave Digital, each with a plain-English action to take."
                     width={1920}
                     height={1080}
@@ -184,7 +184,7 @@ export default function StandpointPage() {
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/ui_04_briefing_1920x1080.png`}
+                    src={`${ASSETS}/images/spatial/leaks_16x9.png`}
                     alt="The Leak Ledger for Sakhi'ksasa Holdings: verified, re-checkable findings about your business."
                     width={1920}
                     height={1080}
@@ -196,7 +196,7 @@ export default function StandpointPage() {
               <Reveal>
                 <figure className="h-gallery-item">
                   <img
-                    src={`${ASSETS}/images/ui_05_competitors_1920x1080.png`}
+                    src={`${ASSETS}/images/spatial/competitors_16x9.png`}
                     alt="Competitor set comparison: Sakhi'ksasa Holdings versus Haefele Software, Brave Digital and CubeZoo, scored across all five signals, side by side."
                     width={1920}
                     height={1080}
