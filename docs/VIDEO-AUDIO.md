@@ -12,7 +12,7 @@ of the previous voice-over. The voice tracks were stripped and replaced.
 
 1. **The videos carry their message visually.** The on-screen frames show
    the actual product UI — the Standing Index gauge, the five signals,
-   blind-spot flags, the monthly briefing — with the brand's own text
+   blind-spot flags, the Leak Ledger — with the brand's own text
    baked in. A voice-over was redundant; the visuals already do the
    talking.
 2. **Music makes the piece feel like an ad.** A confident, cinematic bed
@@ -34,7 +34,7 @@ of the previous voice-over. The voice tracks were stripped and replaced.
   Index → "All the signals. One Standing Index." → "Know where you stand.
   Fix where you lag." → close on the mark.
 - **How it works (22.3s):** five signal chips converge → one 0–100
-  index → blind-spot flags in plain English → the monthly briefing →
+  index → blind-spot flags in plain English → the Leak Ledger →
   "Standpoint. Know where you stand."
 
 Files live in `public/standpoint-assets/video/`; the previous narrated

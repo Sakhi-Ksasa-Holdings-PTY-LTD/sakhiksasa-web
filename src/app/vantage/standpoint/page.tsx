@@ -4,7 +4,7 @@ import { BRAND } from '@/config/brand';
 
 /* ============================================================
    Standpoint — product page (inside Vantage).
-   What it is · Standing Index (0–100) · monthly briefings ·
+   What it is · Standing Index (0–100) · Leak Ledger ·
    pricing (excl. VAT) · 3 Founding Client slots · app CTA.
    Depth lives ONLY here — the home page stays company-first.
 
@@ -137,7 +137,7 @@ export default function StandpointPage() {
           <div className="h-container">
             <Reveal>
               <div className="h-eyebrow">Inside the system</div>
-              <h2 className="h-section-title">The dashboard, the signals, the briefings.</h2>
+              <h2 className="h-section-title">The dashboard, the signals, the Leak Ledger.</h2>
               <p className="h-section-desc">
                 Every screen, one glance: your score, your gaps, and the month's next moves.
                 <em> (Interface shown with sample data.)</em>
@@ -149,7 +149,7 @@ export default function StandpointPage() {
                 <figure className="h-gallery-item">
                   <img
                     src={`${ASSETS}/images/ui_01_dashboard_1920x1080.png`}
-                    alt="Standpoint dashboard: the Standing Index gauge at 68 for Sakhi'ksasa Holdings, a category benchmark ranking you against Haefele Software, Brave Digital and CubeZoo, blind-spot flags and the monthly briefing card."
+                    alt="Standpoint dashboard: the Standing Index gauge at 68 for Sakhi'ksasa Holdings, a category benchmark ranking you against Haefele Software, Brave Digital and CubeZoo, blind-spot flags and the Leak Ledger card."
                     width={1920}
                     height={1080}
                     loading="lazy"
@@ -185,12 +185,12 @@ export default function StandpointPage() {
                 <figure className="h-gallery-item">
                   <img
                     src={`${ASSETS}/images/ui_04_briefing_1920x1080.png`}
-                    alt="The October monthly briefing for Sakhi'ksasa Holdings: what moved, what it means, and the next moves worth making."
+                    alt="The Leak Ledger for Sakhi'ksasa Holdings: verified, re-checkable findings about your business."
                     width={1920}
                     height={1080}
                     loading="lazy"
                   />
-                  <figcaption>The monthly briefing — what moved, what it means, next moves. <em>(Sample data: Sakhi'ksasa Holdings)</em></figcaption>
+                  <figcaption>The Leak Ledger — verified, re-checkable findings about your business. <em>(Sample data: Sakhi'ksasa Holdings)</em></figcaption>
                 </figure>
               </Reveal>
               <Reveal>

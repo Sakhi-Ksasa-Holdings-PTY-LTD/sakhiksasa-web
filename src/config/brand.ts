@@ -122,8 +122,8 @@ export const BRAND = {
         desc: "Where you trail the category leader by 25+ points, Standpoint flags it in plain English your team can act on.",
       },
       {
-        title: "Monthly briefings",
-        desc: "A written briefing each month: what moved, what it means, and the next moves worth making.",
+        title: "Leak Ledger",
+        desc: "Deterministic detectors re-check your business for real, fixable leaks — SSL expiry, missing email auth, broken links, stale promotions. Every finding is verified by re-scan.",
       },
     ],
     signals: ["SEO", "Social", "Ad spend", "Reviews", "Pricing"],
