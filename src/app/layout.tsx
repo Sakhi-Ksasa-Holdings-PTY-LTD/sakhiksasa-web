@@ -14,7 +14,7 @@ const sora = Sora({
 });
 
 const SITE_URL = "https://sakhiksasa.co.za";
-const OG_IMAGE = `${SITE_URL}/portraits/og-image-1200x630.png`;
+const OG_IMAGE = `${SITE_URL}/standpoint-assets/images/standpoint_og_1200x630.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -86,7 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               foundingLocation: "South Africa",
               areaServed: "Global",
               founder: { "@type": "Person", name: "Sanele T. Zwane" },
-              sameAs: ["https://x.com/SakhiHoldings", "https://instagram.com/sakhi.holdings"],
+              sameAs: ["https://x.com/SakhiHoldings", "https://instagram.com/sakhi_holdings"],
               logo: `${SITE_URL}/portraits/logo-horizontal-header-800x200.png`,
             }),
           }}

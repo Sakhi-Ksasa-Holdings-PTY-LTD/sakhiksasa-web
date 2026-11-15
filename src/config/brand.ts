@@ -34,8 +34,8 @@ export const BRAND = {
    * Uses the standalone symbol file (transparent SVG, designed for dark backgrounds).
    */
   divisionLogo: "/portraits/symbol-dark-bg.svg",
-  instagram: "https://instagram.com/sakhi.holdings",
-  instagramHandle: "@sakhi.holdings",
+  instagram: "https://instagram.com/sakhi_holdings",
+  instagramHandle: "@sakhi_holdings",
   /** Official company X (Twitter) account — founder-approved. */
   x: "https://x.com/SakhiHoldings",
   xHandle: "@SakhiHoldings",

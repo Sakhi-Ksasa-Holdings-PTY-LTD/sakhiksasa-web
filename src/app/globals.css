@@ -2388,3 +2388,14 @@ textarea.h-cf-input { resize: vertical; min-height: 110px; font-family: inherit;
 .holdings .h-btn-ghost-light:hover { background: rgba(255, 255, 255, 0.22); border-color: rgba(255, 255, 255, 0.6); color: #fff; }
 .holdings .h-cookie .h-btn-outline { background: transparent; }
 .holdings .h-cookie .h-btn-primary { background: var(--h-primary); }
+
+/* ---------- Standpoint video desktop/mobile switching ---------- */
+.h-video-desktop { display: block; }
+.h-video-mobile { display: none; }
+@media (max-width: 767px) {
+  .h-video-desktop { display: none; }
+  .h-video-mobile { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-video-desktop video, .h-video-mobile video { animation: none !important; }
+}

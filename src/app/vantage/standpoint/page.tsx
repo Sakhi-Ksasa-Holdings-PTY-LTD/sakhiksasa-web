@@ -50,24 +50,41 @@ export default function StandpointPage() {
           </div>
         </section>
 
-        {/* ---------- WATCH: INTRO VIDEO ---------- */}
-        <section className="h-section h-product" aria-label="Introducing Standpoint — video" style={{ paddingTop: 'var(--h-space-10)' }}>
+        {/* ---------- WATCH: PRODUCT FILM ---------- */}
+        <section className="h-section h-product" aria-label="Standpoint product film" style={{ paddingTop: 'var(--h-space-10)' }}>
           <div className="h-container">
             <Reveal>
-              <div className="h-eyebrow">Watch · 14 seconds</div>
-              <h2 className="h-section-title">Introducing Standpoint.</h2>
+              <div className="h-eyebrow">Watch · 16 seconds</div>
+              <h2 className="h-section-title">Know where you stand.</h2>
             </Reveal>
             <Reveal>
-              <div className="h-video-frame h-video-frame-wide">
+              {/* Desktop: 16:9 film. Mobile: 9:16 reel. Switch by CSS breakpoint. */}
+              <div className="h-video-frame h-video-frame-wide h-video-desktop">
                 <video
                   controls
                   playsInline
                   preload="metadata"
-                  poster={`${ASSETS}/video/standpoint_intro_poster.jpg`}
+                  poster={`${ASSETS}/video/standpoint_x_poster.jpg`}
                   className="h-video"
+                  aria-label="Standpoint product film — know where you stand"
                 >
-                  <source src={`${ASSETS}/video/standpoint_intro_16x9.mp4`} type="video/mp4" />
-                  Your browser does not support the video tag.
+                  <source src={`${ASSETS}/video/standpoint_x_16x9_v0.mp4`} type="video/mp4" />
+                  <source src={`${ASSETS}/video/standpoint_x_16x9_v0.webm`} type="video/webm" />
+                  Your browser does not support the video tag. <a href={`${ASSETS}/video/standpoint_x_16x9_v0.mp4`}>Watch the film</a>.
+                </video>
+              </div>
+              <div className="h-video-frame h-video-mobile">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={`${ASSETS}/video/standpoint_reel_poster.jpg`}
+                  className="h-video"
+                  aria-label="Standpoint product film — know where you stand"
+                >
+                  <source src={`${ASSETS}/video/standpoint_reel_9x16_v0.mp4`} type="video/mp4" />
+                  <source src={`${ASSETS}/video/standpoint_reel_9x16_v0.webm`} type="video/webm" />
+                  Your browser does not support the video tag. <a href={`${ASSETS}/video/standpoint_reel_9x16_v0.mp4`}>Watch the film</a>.
                 </video>
               </div>
             </Reveal>
@@ -109,25 +126,27 @@ export default function StandpointPage() {
               ))}
             </div>
 
-            {/* Watch: how it works — the 22-second walkthrough */}
+            {/* Feature gallery — 4 cards */}
             <Reveal>
-              <div className="h-eyebrow" style={{ marginTop: 'var(--h-space-10)' }}>Watch · 22 seconds</div>
-              <h2 className="h-section-title">How Standpoint works.</h2>
-              <div className="h-video-frame h-video-frame-wide" style={{ marginTop: 'var(--h-space-5)' }}>
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster={`${ASSETS}/video/standpoint_how_it_works_poster.jpg`}
-                  className="h-video"
-                >
-                  <source src={`${ASSETS}/video/standpoint_how_it_works_16x9.mp4`} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+              <div className="h-eyebrow" style={{ marginTop: 'var(--h-space-10)' }}>Inside the system</div>
+              <div className="h-feature-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--h-space-4)', marginTop: 'var(--h-space-5)' }}>
+                <figure style={{ margin: 0 }}>
+                  <img src={`${ASSETS}/images/01_hero_4x5.png`} alt="Standpoint hero — know where you stand" width={1080} height={1350} loading="lazy" style={{ width: '100%', height: 'auto', borderRadius: 'var(--h-radius)' }} />
+                  <figcaption style={{ marginTop: 'var(--h-space-2)', fontSize: '0.85rem', color: 'var(--h-muted)' }}>Know where you stand. <em>(Sample data: Sakhi&rsquo;ksasa Holdings)</em></figcaption>
+                </figure>
+                <figure style={{ margin: 0 }}>
+                  <img src={`${ASSETS}/images/02_skyline_4x5.png`} alt="Competitive Skyline view" width={1080} height={1350} loading="lazy" style={{ width: '100%', height: 'auto', borderRadius: 'var(--h-radius)' }} />
+                  <figcaption style={{ marginTop: 'var(--h-space-2)', fontSize: '0.85rem', color: 'var(--h-muted)' }}>Competitive Skyline. <em>(Sample data: Sakhi&rsquo;ksasa Holdings)</em></figcaption>
+                </figure>
+                <figure style={{ margin: 0 }}>
+                  <img src={`${ASSETS}/images/03_standing_index_4x5.png`} alt="Standing Index gauge" width={1080} height={1350} loading="lazy" style={{ width: '100%', height: 'auto', borderRadius: 'var(--h-radius)' }} />
+                  <figcaption style={{ marginTop: 'var(--h-space-2)', fontSize: '0.85rem', color: 'var(--h-muted)' }}>Standing Index. <em>(Sample data: Sakhi&rsquo;ksasa Holdings)</em></figcaption>
+                </figure>
+                <figure style={{ margin: 0 }}>
+                  <img src={`${ASSETS}/images/04_pricing_4x5.png`} alt="Pricing tiers" width={1080} height={1350} loading="lazy" style={{ width: '100%', height: 'auto', borderRadius: 'var(--h-radius)' }} />
+                  <figcaption style={{ marginTop: 'var(--h-space-2)', fontSize: '0.85rem', color: 'var(--h-muted)' }}>Pricing. <em>(Sample data: Sakhi&rsquo;ksasa Holdings)</em></figcaption>
+                </figure>
               </div>
-              <p className="h-section-desc" style={{ fontSize: '0.85rem', marginTop: 'var(--h-space-3)', opacity: 0.7 }}>
-                Music: &ldquo;Long Note Two&rdquo; — Kevin MacLeod (incompetech.com), licensed under CC-BY 4.0.
-              </p>
             </Reveal>
           </div>
         </section>
