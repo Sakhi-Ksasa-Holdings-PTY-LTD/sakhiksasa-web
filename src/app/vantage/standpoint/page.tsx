@@ -91,6 +91,51 @@ export default function StandpointPage() {
           </div>
         </section>
 
+        {/* ---------- STANDPOINT IN 56 SECONDS (explainer video) ---------- */}
+        <section id="standpoint-in-56-seconds" className="h-section h-product h-explainer-section" aria-label="Standpoint in 56 seconds — explainer video">
+          <div className="h-container">
+            <div className="h-eyebrow">Watch · 56 seconds</div>
+            <h2 className="h-section-title">Standpoint in 56 seconds</h2>
+            <p className="h-section-desc">
+              See your Standing Index, every competitor signal side by side, the blind spots where you trail the leader, and the Leak Ledger of re-checkable findings. Start free.
+            </p>
+
+            {/* Lazy-loaded 16:9 video player — preload="metadata" only, no autoplay */}
+            <div
+              className="h-video-frame h-video-frame-wide h-explainer-video"
+              style={{ marginTop: 'var(--h-space-6)' }}
+            >
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                poster={`${ASSETS}/video/standpoint_explainer_16x9_v0_poster_1920.webp`}
+                className="h-video"
+                aria-label="Standpoint in 56 seconds — explainer video showing the Standing Index, competitor signals, blind spots, and Leak Ledger"
+              >
+                <source src={`${ASSETS}/video/standpoint_explainer_16x9_v0.mp4`} type="video/mp4" />
+                <source src={`${ASSETS}/video/standpoint_explainer_16x9_v0.webm`} type="video/webm" />
+                Your browser does not support the video tag. <a href={`${ASSETS}/video/standpoint_explainer_16x9_v0.mp4`}>Watch the explainer</a>.
+              </video>
+            </div>
+
+            <p style={{ marginTop: 'var(--h-space-3)', fontSize: 'var(--h-text-sm)', color: 'var(--h-muted)', textAlign: 'center' }}>
+              Sample data: Sakhi&rsquo;ksasa Holdings. Sound effects only — no voiceover. All spoken content is on-screen text.
+            </p>
+
+            {/* Collapsible transcript — built from the on-screen text */}
+            <details style={{ marginTop: 'var(--h-space-4)', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}>
+              <summary style={{ cursor: 'pointer', fontSize: 'var(--h-text-sm)', color: 'var(--h-muted)', fontWeight: 600, padding: 'var(--h-space-1) 0', listStyle: 'none' }}>
+                Read the transcript
+                <span aria-hidden="true" style={{ marginLeft: '8px', fontSize: '0.75em' }}>&#9662;</span>
+              </summary>
+              <p style={{ marginTop: 'var(--h-space-2)', fontSize: 'var(--h-text-sm)', color: 'var(--h-muted)', lineHeight: 1.7, padding: '0 var(--h-space-1)' }}>
+                How do you really know where you stand? Meet Standpoint. One number, your standing. Every signal, side by side. Where you trail the leader. Re-checkable, no AI. Five views, one tap. Start at R0. Founding clients R500 per month for 6 months, first 3 only. Know where you stand. Fix where you lag. Start free today.
+              </p>
+            </details>
+          </div>
+        </section>
+
         {/* ---------- HOW IT WORKS ---------- */}
         <section className="h-section h-product" aria-label="How Standpoint works">
           <div className="h-container">
@@ -206,6 +251,23 @@ export default function StandpointPage() {
           </div>
         </section>
       </main>
+      {/* VideoObject structured data for the 56-second explainer video */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: 'Standpoint in 56 seconds',
+            description: 'See your Standing Index, every competitor signal side by side, the blind spots where you trail the leader, and the Leak Ledger of re-checkable findings. Start free.',
+            thumbnailUrl: `${ASSETS}/video/standpoint_explainer_16x9_v0_poster_1920.jpg`,
+            uploadDate: '2026-11-16',
+            duration: 'PT56S',
+            contentUrl: `${ASSETS}/video/standpoint_explainer_16x9_v0.mp4`,
+            embedUrl: `https://sakhiksasa.co.za/vantage/standpoint#standpoint-in-56-seconds`,
+          }),
+        }}
+      />
       <Footer />
       <CookieBanner />
       <ContactModal />
