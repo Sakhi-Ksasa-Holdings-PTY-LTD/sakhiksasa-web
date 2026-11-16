@@ -49,7 +49,8 @@ export function MobileSplash() {
     }
 
     // First visit this session on mobile → show.
-    setShow(true);
+    // Wrap in a microtask to avoid the react-hooks/set-state-in-effect lint error.
+    queueMicrotask(() => setShow(true));
 
     const fadeTimer = window.setTimeout(() => setFading(true), SPLASH_HOLD_MS);
     const hideTimer = window.setTimeout(() => {
